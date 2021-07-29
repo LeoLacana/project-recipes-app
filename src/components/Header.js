@@ -1,18 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
 
 const Header = ({ canSearch }) => {
   const searchBtn = (
-    <object
-      data-testid="search-top-btn"
-      type="image/svg+xml"
-      data={ searchIcon }
-    >
-      Search
-    </object>
+    <img src={ searchIcon } alt="Search" />
   );
   return (
     <header>
