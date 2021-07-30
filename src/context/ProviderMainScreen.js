@@ -17,5 +17,5 @@ export default function ProviderMainScreen({ children }) {
 }
 
 ProviderMainScreen.propTypes = {
-  children: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
 };
