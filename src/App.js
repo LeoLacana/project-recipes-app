@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import rockGlass from './images/rockGlass.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import pages from './pages/index';
+import Header from './components/Header';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       >
         Glass
       </object>
+      <Header canSearch />
       <Switch>
         <Route exact path="/" />
         <Route exact path="/comidas" component={ pages.Food } />
