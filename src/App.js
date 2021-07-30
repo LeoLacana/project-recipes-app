@@ -3,6 +3,7 @@ import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import rockGlass from './images/rockGlass.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import pages from './pages/index';
 import Header from './components/Header';
 
 function App() {
@@ -20,19 +21,27 @@ function App() {
       {/* <ProviderMainScreen /> */}
       <Switch>
         <Route exact path="/" />
-        <Route exact path="/comidas" />
-        <Route exact path="/bebidas" />
+        <Route exact path="/comidas" component={ pages.Food } />
+        <Route exact path="/bebidas" component={ pages.Drinks } />
         <Route exact path="/comidas/:recipeId" />
         <Route exact path="/bebidas/:recipeId" />
         <Route exact path="/comidas/:recipeId/in-progress" />
         <Route exact path="/bebidas/:recipeId/in-progress" />
-        <Route exact path="/explorar" />
-        <Route exact path="/explorar/comidas" />
-        <Route exact path="/explorar/bebidas" />
-        <Route exact path="/explorar/comidas/ingredientes" />
-        <Route exact path="/explorar/bebidas/ingredientes" />
-        <Route exact path="/explorar/comidas/area" />
-        <Route exact path="/perfil" />
+        <Route exact path="/explorar" component={ pages.Explore } />
+        <Route exact path="/explorar/comidas" component={ pages.ExploreFood } />
+        <Route exact path="/explorar/bebidas" component={ pages.ExploreDrinks } />
+        <Route
+          exact
+          path="/explorar/comidas/ingredientes"
+          component={ pages.FoodByIngredients }
+        />
+        <Route
+          exact
+          path="/explorar/bebidas/ingredientes"
+          component={ pages.DrinksByIngredients }
+        />
+        <Route exact path="/explorar/comidas/area" component={ pages.PlaceFood } />
+        <Route exact path="/perfil" component={ pages.Profile } />
         <Route exact path="/receitas-feitas" />
         <Route exact path="/receitas-favoritas" />
       </Switch>
