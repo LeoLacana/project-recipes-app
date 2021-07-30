@@ -3,6 +3,7 @@ import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import rockGlass from './images/rockGlass.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from './components/Login';
 import pages from './pages/index';
 import Header from './components/Header';
 
@@ -19,7 +20,7 @@ function App() {
       </object>
       <Header canSearch />
       <Switch>
-        <Route exact path="/" />
+        <Route exact path="/" component={ Login } />
         <Route exact path="/comidas" component={ pages.Food } />
         <Route exact path="/bebidas" component={ pages.Drinks } />
         <Route exact path="/comidas/:recipeId" />
