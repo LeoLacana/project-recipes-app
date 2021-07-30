@@ -3,7 +3,7 @@ import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import rockGlass from './images/rockGlass.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import SearchBar from './components/SearchBar';
+import Header from './components/Header';
 
 function App() {
   return (
@@ -16,8 +16,10 @@ function App() {
       >
         Glass
       </object>
+      <Header />
+      {/* <ProviderMainScreen /> */}
       <Switch>
-        <Route exact path="/" component={ SearchBar } />
+        <Route exact path="/" />
         <Route exact path="/comidas" />
         <Route exact path="/bebidas" />
         <Route exact path="/comidas/:recipeId" />
