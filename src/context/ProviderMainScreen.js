@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import contextRecipes from './ContextRecipes';
 
 export default function ProviderMainScreen({ children }) {
-  const [canSearch, setCanSearch] = useState({ search: true });
-  console.log(canSearch);
+  const [enableSearch, setEnableSearch] = useState(true);
   const recipesState = {
-    canSearch,
-    setCanSearch,
+    enableSearch,
+    setEnableSearch,
   };
 
   return (

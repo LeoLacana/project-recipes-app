@@ -17,8 +17,7 @@ function App() {
       >
         Glass
       </object>
-      <Header />
-      {/* <ProviderMainScreen /> */}
+      <Header canSearch />
       <Switch>
         <Route exact path="/" />
         <Route exact path="/comidas" component={ pages.Food } />
