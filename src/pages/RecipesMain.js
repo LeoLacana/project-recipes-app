@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { fetchCats, fetchByAll, fetchByCat } from '../service/FetchAPIs';
+import Footer from '../components/Footer';
 
 const catsLimit = 5;
 
@@ -103,6 +104,7 @@ const RecipesMain = ({ type }) => {
         </button>
       )) }
       { recipes.length > 0 ? renderCards() : '' }
+      <Footer />
     </div>
   );
 };
