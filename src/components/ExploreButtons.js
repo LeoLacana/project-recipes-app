@@ -80,7 +80,7 @@ function ExploreButtons({ food }) {
 }
 
 ExploreButtons.propTypes = {
-  origin: PropTypes.bool,
+  food: PropTypes.bool,
 }.isRequired;
 
 export default ExploreButtons;
