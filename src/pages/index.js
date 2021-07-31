@@ -14,6 +14,7 @@ const pages = {
   ExploreFood,
   Profile,
   PlaceFood,
+
 };
 
 export default pages;
