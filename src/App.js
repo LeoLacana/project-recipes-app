@@ -4,8 +4,9 @@ import { Switch, Route } from 'react-router-dom';
 // import rockGlass from './images/rockGlass.svg';
 import RecipesMain from './pages/RecipesMain';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './components/Login';
+import Login from './pages/Login';
 import pages from './pages/index';
+import TelaDeReceitaEmProgresso from './pages/TelaDeReceitaEmProgresso';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         Glass
       </object> */}
       <Switch>
-        <Route exact path="/" component={ Login } />
+        <Route exact path="/" component={ TelaDeReceitaEmProgresso } />
         <Route exact path="/comidas">
           <RecipesMain type="comida" />
         </Route>
