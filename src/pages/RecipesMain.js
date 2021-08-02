@@ -19,7 +19,7 @@ const RecipesMain = ({ type }) => {
       setRecipes(results);
     };
     getRecipes();
-  }, []);
+  }, [type]);
 
   const renderCards = () => {
     const recipesLimit = 12;
