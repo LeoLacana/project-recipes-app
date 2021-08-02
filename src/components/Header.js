@@ -21,15 +21,15 @@ const Header = ({ canSearch }) => {
     <div>
       <header>
         <Link to="/perfil">
-          <img src={ profileIcon } alt="Profile" />
+          <img src={ profileIcon } alt="Profile" data-testid="profile-top-btn" />
         </Link>
         <h3 data-testid="page-title">Inicial</h3>
-        { canSearch ? (
-          <button type="button" onClick={ handleSerchClick }>
-            <img src={ searchIcon } alt="Search" />
-          </button>
-        ) : ''}
       </header>
+      { canSearch ? (
+        <button type="button" onClick={ handleSerchClick } data-testid="search-top-btn">
+          <img src={ searchIcon } alt="Search" />
+        </button>
+      ) : ''}
       { enableSearch ? '' : <SearchBar /> }
     </div>
   );
