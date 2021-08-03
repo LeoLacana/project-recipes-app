@@ -8,9 +8,10 @@ import Footer from '../components/Footer';
 
 const catsLimit = 5;
 
-const RecipesMain = ({ type }) => {
+const RecipesMain = ({ type, history }) => {
   const [recipes, setRecipes] = useState([]);
   const [categories, setCats] = useState([]);
+
   useEffect(() => {
     const getRecipes = async () => {
       const cats = await fetchCats(type);
@@ -83,7 +84,7 @@ const RecipesMain = ({ type }) => {
 
   return (
     <div>
-      <Header canSearch />
+      <Header canSearch type={ type } history={ history } />
       <button
         type="submit"
         data-testid="All-category-filter"
@@ -111,6 +112,7 @@ const RecipesMain = ({ type }) => {
 
 RecipesMain.propTypes = {
   type: PropTypes.string.isRequired,
+  history: PropTypes.string.isRequired,
 };
 
 export default RecipesMain;
