@@ -3,6 +3,15 @@
 }
 
 .btn-start-recp {
-  bottom: 0px;
+  bottom: 0;
   position: fixed;
+}
+
+.rec-carousel {
+  margin: 0 auto;
+  width: 25%;
+}
+
+.rec-carousel h5 {
+  color: black;
 }

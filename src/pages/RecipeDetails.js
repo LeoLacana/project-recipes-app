@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import Carousel from 'react-bootstrap/Carousel';
 import './RecipeDetails.css';
 import PropTypes from 'prop-types';
+import BtnStartRecipe from '../components/BtnStartRecipe';
 import { fetchById, fetchByAll } from '../service/FetchAPIs';
 
 const mgc6 = 6;
@@ -45,15 +47,19 @@ const RecipeDetails = ({ type, match }) => {
   }, [recipe]);
 
   const renderRecomendations = () => (
-    recomendations.slice(0, mgc6).map((r, i) => {
-      const thumb = type === 'comida' ? r.strDrinkThumb : r.strMealThumb;
-      const recName = type === 'comida' ? r.strDrink : r.strMeal;
-      return (
-        <div key={ `rec-${i}` } data-testid={ `${i}-recomendation-card` }>
-          <h5 data-testid={ `${i}-recomendation-title` }>{ recName }</h5>
-          <img src={ thumb } alt={ recName } className="recipe-img" />
-        </div>);
-    })
+    <Carousel className="rec-carousel" variant="dark">
+      {recomendations.slice(0, mgc6).map((r, i) => {
+        const thumb = type === 'comida' ? r.strDrinkThumb : r.strMealThumb;
+        const recName = type === 'comida' ? r.strDrink : r.strMeal;
+        return (
+          <Carousel.Item key={ `rec-${i}` } data-testid={ `${i}-recomendation-card` }>
+            <img src={ thumb } alt={ recName } className="w-100" />
+            <Carousel.Caption>
+              <h5 data-testid={ `${i}-recomendation-title` }>{ recName }</h5>
+            </Carousel.Caption>
+          </Carousel.Item>);
+      })}
+    </Carousel>
   );
 
   const recipeInfo = () => {
@@ -91,18 +97,11 @@ const RecipeDetails = ({ type, match }) => {
       </div>
     );
   };
-  console.log(recipe);
   return (
     <div>
       { recipeInfo() }
       { renderRecomendations() }
-      <button
-        type="submit"
-        data-testid="start-recipe-btn"
-        className="btn-start-recp"
-      >
-        Start Recipe
-      </button>
+      <BtnStartRecipe recipeId={ recipeId } type={ type } />
     </div>
   );
 };
