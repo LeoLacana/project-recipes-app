@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-
 import {
   requestIngredient,
   requestName,
   requestLetra } from '../service/RequestSearchBar';
 
-export default function SearchBar({ type }) {
+export default function SearchBar({ type, history }) {
   const [valueRadioSearchBar, setValueRadioSearchBar] = useState('');
   const [valueInputSearchBar, setValueInputSearchBar] = useState('');
 
@@ -30,8 +29,13 @@ export default function SearchBar({ type }) {
       }
       resultRequest = await requestLetra(valueInputSearchBar, type);
     }
-    if (resultRequest.length === 1) {
-      // return history.push(`/${type}/${resultRequest}`);
+    // console.log(resultRequest);
+    if (resultRequest.length === 1 && type === 'comidas') {
+      history.push(`/${type}/${resultRequest[0].idMeal}`);
+      // console.log(history);
+    }
+    if (resultRequest.length === 1 && type === 'bebidas') {
+      history.push(`/${type}/${resultRequest[0].idDrink}`);
       // console.log(history);
     }
   };
@@ -88,4 +92,5 @@ export default function SearchBar({ type }) {
 
 SearchBar.propTypes = {
   type: PropTypes.string.isRequired,
+  history: PropTypes.string.isRequired,
 };
