@@ -57,6 +57,7 @@ function App() {
           component={ pages.DrinksByIngredients }
         />
         <Route exact path="/explorar/comidas/area" component={ pages.PlaceFood } />
+        <Route exact path="/explorar/bebidas/area" component={ pages.NotFound } />
         <Route exact path="/perfil" component={ pages.Profile } />
         <Route exact path="/receitas-feitas" />
         <Route exact path="/receitas-favoritas" />

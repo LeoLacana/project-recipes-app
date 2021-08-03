@@ -5,6 +5,7 @@ import ExploreDrinks from './ExploreDrinks';
 import ExploreFood from './ExploreFood';
 import Profile from './Profile';
 import PlaceFood from './PlaceFood';
+import NotFound from './NotFound';
 
 const pages = {
   Explore,
@@ -14,6 +15,7 @@ const pages = {
   ExploreFood,
   Profile,
   PlaceFood,
+  NotFound,
 
 };
 
