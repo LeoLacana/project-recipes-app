@@ -7,7 +7,7 @@ const BtnStartRecipe = ({ recipeId, type }) => {
   const history = useHistory();
 
   const findByIdArray = (array) => array.find(({ id }) => id === recipeId);
-  const findByIdObject = (obj) => (type === 'comida'
+  const findByIdObject = (obj) => (type === 'comidas'
     ? obj.meals[recipeId]
     : obj.cocktails[recipeId]);
 
@@ -26,7 +26,7 @@ const BtnStartRecipe = ({ recipeId, type }) => {
 
   const toInProgress = (event) => {
     event.preventDefault();
-    const newUrl = type === 'comida'
+    const newUrl = type === 'comidas'
       ? `/comidas/${recipeId}/in-progress` : `/bebidas/${recipeId}/in-progress`;
     history.push(newUrl);
   };

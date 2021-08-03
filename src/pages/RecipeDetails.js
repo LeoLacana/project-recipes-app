@@ -19,8 +19,8 @@ const RecipeDetails = ({ type, match }) => {
   useEffect(() => {
     const getRecipe = async () => {
       const result = await fetchById(type, recipeId);
-      const recs = await type === 'comida'
-        ? await fetchByAll('bebida') : await fetchByAll('comida');
+      const recs = await type === 'comidas'
+        ? await fetchByAll('bebida') : await fetchByAll('comidas');
       setRecipe(result[0]);
       setRecs(recs);
     };
@@ -30,7 +30,7 @@ const RecipeDetails = ({ type, match }) => {
   useEffect(() => {
     const getIngs = async () => {
       const ingsArr = [];
-      const ingsLimit = type === 'comida' ? mgc21 : mgc16;
+      const ingsLimit = type === 'comidas' ? mgc21 : mgc16;
       for (let i = 1; i < ingsLimit; i += 1) {
         const currIng = recipe[`strIngredient${i}`];
         if (currIng) {
@@ -41,7 +41,7 @@ const RecipeDetails = ({ type, match }) => {
       setIngs(ingsArr);
     };
     getIngs();
-    if (Object.keys(recipe).length !== 0 && type === 'comida') {
+    if (Object.keys(recipe).length !== 0 && type === 'comidas') {
       const vidEndPoint = recipe.strYoutube.split('=')[1];
       setVideo(`https://www.youtube-nocookie.com/v/${vidEndPoint}`);
     }
@@ -50,8 +50,8 @@ const RecipeDetails = ({ type, match }) => {
   const renderRecomendations = () => (
     <Carousel className="rec-carousel" variant="dark">
       {recomendations.slice(0, mgc6).map((r, i) => {
-        const thumb = type === 'comida' ? r.strDrinkThumb : r.strMealThumb;
-        const recName = type === 'comida' ? r.strDrink : r.strMeal;
+        const thumb = type === 'comidas' ? r.strDrinkThumb : r.strMealThumb;
+        const recName = type === 'comidas' ? r.strDrink : r.strMeal;
         return (
           <Carousel.Item key={ `rec-${i}` } data-testid={ `${i}-recomendation-card` }>
             <img src={ thumb } alt={ recName } className="w-100" />
@@ -64,9 +64,9 @@ const RecipeDetails = ({ type, match }) => {
   );
 
   const recipeInfo = () => {
-    const thumb = type === 'comida' ? recipe.strMealThumb : recipe.strDrinkThumb;
-    const recpName = type === 'comida' ? recipe.strMeal : recipe.strDrink;
-    const recpCat = type === 'comida' ? recipe.strCategory : recipe.strAlcoholic;
+    const thumb = type === 'comidas' ? recipe.strMealThumb : recipe.strDrinkThumb;
+    const recpName = type === 'comidas' ? recipe.strMeal : recipe.strDrink;
+    const recpCat = type === 'comidas' ? recipe.strCategory : recipe.strAlcoholic;
     return (
       <div>
         <img
@@ -85,7 +85,7 @@ const RecipeDetails = ({ type, match }) => {
           ))}
         </ul>
         <p data-testid="instructions">{ recipe.strInstructions }</p>
-        { type === 'comida'
+        { type === 'comidas'
           ? (
             <object
               data-testid="video"
