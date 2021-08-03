@@ -7,6 +7,10 @@
   position: fixed;
 }
 
+.btn-container {
+  margin: 0 auto;
+}
+
 .rec-carousel {
   margin: 0 auto;
   width: 25%;

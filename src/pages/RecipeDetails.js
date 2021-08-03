@@ -3,6 +3,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import './RecipeDetails.css';
 import PropTypes from 'prop-types';
 import BtnStartRecipe from '../components/BtnStartRecipe';
+import BtnShare from '../components/BtnShare';
 import { fetchById, fetchByAll } from '../service/FetchAPIs';
 
 const mgc6 = 6;
@@ -94,6 +95,9 @@ const RecipeDetails = ({ type, match }) => {
               data={ mealVideo }
             />)
           : '' }
+        <div className="btn-container">
+          <BtnShare />
+        </div>
       </div>
     );
   };
