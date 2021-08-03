@@ -1,50 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
 import {
   requestIngredient,
   requestName,
   requestLetra } from '../service/RequestSearchBar';
 
-export default function SearchBar() {
-  let radio;
+export default function SearchBar({ type }) {
+  const [valueRadioSearchBar, setValueRadioSearchBar] = useState('');
+  const [valueInputSearchBar, setValueInputSearchBar] = useState('');
 
-  const setRadioSelected = ({ target }) => {
-    radio = target.value;
+  const getValueInput = ({ target }) => {
+    setValueInputSearchBar(target.value);
+    console.log(type);
   };
-
   const handleSearchBar = async () => {
-    const valueInput = document.getElementById('search-input').value;
-    if (radio === 'ingrediente') {
-      const resultRequestIngredient = await requestIngredient(valueInput);
-      console.log(resultRequestIngredient);
-      return resultRequestIngredient;
+    let resultRequest;
+    if (valueRadioSearchBar === 'ingrediente') {
+      resultRequest = await requestIngredient(valueInputSearchBar, type);
     }
-    if (radio === 'nome') {
-      const resultRequestName = await requestName(valueInput);
-      // console.log(resultRequestName);
-      return resultRequestName;
+    if (valueRadioSearchBar === 'nome') {
+      resultRequest = await requestName(valueInputSearchBar, type);
     }
 
-    if (radio === 'primeira letra') {
-      let result;
-      if (valueInput.length > 1) {
-        result = alert('Sua busca deve conter somente 1 (um) caracter');
-      } else {
-        result = await requestLetra(valueInput);
+    if (valueRadioSearchBar === 'primeira letra') {
+      if (valueInputSearchBar.length > 1) {
+        // eslint-disable-next-line no-alert
+        return alert('Sua busca deve conter somente 1 (um) caracter');
       }
-      return result;
+      resultRequest = await requestLetra(valueInputSearchBar, type);
+    }
+    if (resultRequest.length === 1) {
+      // return history.push(`/${type}/${resultRequest}`);
+      // console.log(history);
     }
   };
 
   return (
     <form>
-      <input type="text" data-testid="search-input" id="search-input" />
+      <input
+        type="text"
+        data-testid="search-input"
+        id="search-input"
+        onChange={ getValueInput }
+      />
       <label htmlFor="ingredient-seatch-radio">
         <input
           type="radio"
           data-testid="ingredient-search-radio"
           value="ingrediente"
           id="ingredient-search-radio"
-          onClick={ setRadioSelected }
+          onClick={ () => setValueRadioSearchBar('ingrediente') }
         />
         Ingrediente
       </label>
@@ -54,7 +60,7 @@ export default function SearchBar() {
           data-testid="name-search-radio"
           value="nome"
           id="name-search-radio"
-          onClick={ setRadioSelected }
+          onClick={ () => setValueRadioSearchBar('nome') }
         />
         Nome
       </label>
@@ -64,7 +70,7 @@ export default function SearchBar() {
           data-testid="first-letter-search-radio"
           value="primeira letra"
           id="first-letter-search-radio"
-          onClick={ setRadioSelected }
+          onClick={ () => setValueRadioSearchBar('primeira letra') }
         />
         Primeira Letra
       </label>
@@ -79,3 +85,7 @@ export default function SearchBar() {
     </form>
   );
 }
+
+SearchBar.propTypes = {
+  type: PropTypes.string.isRequired,
+};
