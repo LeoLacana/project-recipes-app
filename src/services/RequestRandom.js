@@ -23,3 +23,21 @@ export async function getIngredientsMeals() {
     .then((data) => data.json());
   return meals;
 }
+
+export async function getArea() {
+  const responseApi = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?a=list')
+    .then((data) => data.json());
+  return responseApi.meals;
+}
+
+export async function getMealsByArea(area) {
+  const { meals } = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?a=${area}`)
+    .then((response) => response.json());
+  return meals;
+}
+
+export async function getRecomendation() {
+  const responseApi = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=')
+    .then((data) => data.json());
+  return responseApi.meals;
+}

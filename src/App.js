@@ -3,6 +3,7 @@ import './App.css';
 import { Switch, Route } from 'react-router-dom';
 // import rockGlass from './images/rockGlass.svg';
 import RecipesMain from './pages/RecipesMain';
+import RecipesDetails from './pages/RecipeDetails';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login';
 import pages from './pages/index';
@@ -26,8 +27,16 @@ function App() {
         <Route exact path="/bebidas">
           <RecipesMain type="bebida" />
         </Route>
-        <Route exact path="/comidas/:recipeId" />
-        <Route exact path="/bebidas/:recipeId" />
+        <Route
+          exact
+          path="/comidas/:recipeId"
+          render={ (props) => <RecipesDetails { ...props } type="comida" /> }
+        />
+        <Route
+          exact
+          path="/bebidas/:recipeId"
+          render={ (props) => <RecipesDetails { ...props } type="bebida" /> }
+        />
         <Route exact path="/comidas/:recipeId/in-progress" />
         <Route exact path="/bebidas/:recipeId/in-progress" />
         <Route exact path="/explorar" component={ pages.Explore } />
@@ -44,6 +53,7 @@ function App() {
           component={ pages.DrinksByIngredients }
         />
         <Route exact path="/explorar/comidas/area" component={ pages.PlaceFood } />
+        <Route exact path="/explorar/bebidas/area" component={ pages.NotFound } />
         <Route exact path="/perfil" component={ pages.Profile } />
         <Route exact path="/receitas-feitas" />
         <Route exact path="/receitas-favoritas" />
