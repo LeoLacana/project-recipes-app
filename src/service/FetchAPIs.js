@@ -19,8 +19,16 @@ export const fetchByCat = async (type, cat) => {
   return (type === 'comida' ? results.meals : results.drinks);
 };
 
+export const fetchById = async (type, id) => {
+  const url = type === 'comida' ? `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}` : `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`;
+  const results = await fetch(url)
+    .then((r) => r.json());
+  return (type === 'comida' ? results.meals : results.drinks);
+};
+
 export default {
   fetchCats,
   fetchByAll,
   fetchByCat,
+  fetchById,
 };
