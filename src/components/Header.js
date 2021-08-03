@@ -6,7 +6,7 @@ import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 import contextRecipes from '../context/ContextRecipes';
 
-const Header = ({ canSearch, type, history }) => {
+const Header = ({ canSearch, type /* history */ }) => {
   const { enableSearch, setEnableSearch } = useContext(contextRecipes);
 
   const handleSerchClick = () => {
@@ -30,7 +30,7 @@ const Header = ({ canSearch, type, history }) => {
           <img src={ searchIcon } alt="Search" />
         </button>
       ) : ''}
-      { enableSearch ? '' : <SearchBar type={ type } history={ history } /> }
+      { enableSearch ? '' : <SearchBar type={ type } /* history={ history } */ /> }
     </div>
   );
 };
