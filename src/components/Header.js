@@ -38,6 +38,7 @@ const Header = ({ canSearch, type, history }) => {
 Header.propTypes = {
   canSearch: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,
+  history: PropTypes.string.isRequired,
 };
 
 export default Header;
