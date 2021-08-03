@@ -21,12 +21,16 @@ function App() {
       </object> */}
       <Switch>
         <Route exact path="/" component={ Login } />
-        <Route exact path="/comidas">
-          <RecipesMain type="comida" />
-        </Route>
-        <Route exact path="/bebidas">
-          <RecipesMain type="bebida" />
-        </Route>
+        <Route
+          exact
+          path="/comidas"
+          render={ (props) => <RecipesMain { ...props } type="comidas" /> }
+        />
+        <Route
+          exact
+          path="/bebidas"
+          render={ (props) => <RecipesMain { ...props } type="bebidas" /> }
+        />
         <Route
           exact
           path="/comidas/:recipeId"
