@@ -4,6 +4,7 @@ import './RecipeDetails.css';
 import PropTypes from 'prop-types';
 import BtnStartRecipe from '../components/BtnStartRecipe';
 import BtnShare from '../components/BtnShare';
+import BtnFavorite from '../components/BtnFavorite';
 import { fetchById, fetchByAll } from '../service/FetchAPIs';
 
 const mgc6 = 6;
@@ -97,6 +98,7 @@ const RecipeDetails = ({ type, match }) => {
           : '' }
         <div className="btn-container">
           <BtnShare />
+          <BtnFavorite recipe={ recipe } type={ type } recipeId={ recipeId } />
         </div>
       </div>
     );
