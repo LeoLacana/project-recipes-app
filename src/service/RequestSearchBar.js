@@ -30,7 +30,7 @@ export const requestLetra = async (primeiraLetra, type) => {
     .then((results) => results.json())
     .then((r) => r.drinks);
 };
-
+// s
 export default {
   requestIngredient,
   requestName,
