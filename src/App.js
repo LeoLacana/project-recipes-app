@@ -7,7 +7,7 @@ import RecipesDetails from './pages/RecipeDetails';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './pages/Login';
 import pages from './pages/index';
-import TelaDeReceitaEmProgresso from './pages/TelaDeReceitaEmProgresso';
+import InProgressRecipes from './pages/InProgressRecipes';
 
 function App() {
   return (
@@ -21,17 +21,6 @@ function App() {
         Glass
       </object> */}
       <Switch>
-<<<<<<< HEAD
-        <Route exact path="/" component={ TelaDeReceitaEmProgresso } />
-        <Route exact path="/comidas">
-          <RecipesMain type="comida" />
-        </Route>
-        <Route exact path="/bebidas">
-          <RecipesMain type="bebida" />
-        </Route>
-        <Route exact path="/comidas/:recipeId" />
-        <Route exact path="/bebidas/:recipeId" />
-=======
         <Route exact path="/" component={ Login } />
         <Route
           exact
@@ -53,9 +42,16 @@ function App() {
           path="/bebidas/:recipeId"
           render={ (props) => <RecipesDetails { ...props } type="bebidas" /> }
         />
->>>>>>> c74fa5ffa0ef1b9672eaadadf522e4d55b9801f9
-        <Route exact path="/comidas/:recipeId/in-progress" />
-        <Route exact path="/bebidas/:recipeId/in-progress" />
+        <Route
+          exact
+          path="/comidas/:recipeId/in-progress"
+          render={ () => <InProgressRecipes type="comidas" /> }
+        />
+        <Route
+          exact
+          path="/bebidas/:recipeId/in-progress"
+          render={ () => <InProgressRecipes type="bebidas" /> }
+        />
         <Route exact path="/explorar" component={ pages.Explore } />
         <Route exact path="/explorar/comidas" component={ pages.ExploreFood } />
         <Route exact path="/explorar/bebidas" component={ pages.ExploreDrinks } />

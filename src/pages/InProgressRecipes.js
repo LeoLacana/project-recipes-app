@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import BtnShare from '../components/BtnShare';
 import shareIcon from '../images/shareIcon.svg';
 import whiteHeartIcon from '../images/whiteHeartIcon.svg';
-import './tela.css';
+import './InProgressRecipes.css';
 
-function TelaDeReceitaEmProgresso(type) {
+function InProgressRecipes({ type }) {
+  const { recipeId } = useParams();
   const [infoRecipes, setinfoRecipes] = useState({});
   const [ingredientAndMeasure, setingredientAndMeasure] = useState([]);
-
+  console.log(type);
   function tranformamEmArray(e, recipes) {
     return Object.keys(recipes)
       .filter((key) => key.includes(e))
@@ -15,7 +18,8 @@ function TelaDeReceitaEmProgresso(type) {
   }
   useEffect(() => {
     const getApi = async () => {
-      const getFetch = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata');
+      const url = type === 'comidas' ? `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}` : `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${recipeId}`;
+      const getFetch = await fetch(url);
       const json = await getFetch.json();
       const recipes = Object.entries(json)[0][1][0];
       setinfoRecipes(recipes);
@@ -24,37 +28,38 @@ function TelaDeReceitaEmProgresso(type) {
       setingredientAndMeasure(ingredient.map((e, i) => ({ ing: e, mea: measure[i] })));
     };
     getApi();
-  }, []);
+  }, [type, recipeId]);
 
   function addClass({ target }) {
     if (target.parentNode.classList.value === '') target.parentNode.classList.add('o');
     else target.parentNode.classList.remove('o');
   }
 
-  /*   if (type === Meal) { */
-  const { strCategory, strInstructions, strMealThumb, strMeal } = infoRecipes;
+  const thumb = type === 'comidas' ? infoRecipes.strMealThumb : infoRecipes.strDrinkThumb;
+  const recpName = type === 'comidas' ? infoRecipes.strMeal : infoRecipes.strDrink;
+  const recpCat = type === 'comidas' ? infoRecipes.strCategory : infoRecipes.strAlcoholic;
+  const { strInstructions } = infoRecipes;
+
   return (
     <div>
       <div>
         <img
           data-testid="recipe-photo"
-          src={ strMealThumb }
-          alt={ strMeal }
+          src={ thumb }
+          alt={ recpName }
           width={ 300 }
         />
       </div>
       <span data-testid="recipe-title" className="h3">
-        {strMeal}
+        {recpName}
       </span>
       <span>
-        <button type="button" data-testid="share-btn">
-          <img src={ shareIcon } alt="compartilhar" />
-        </button>
+        <BtnShare />
         <button type="button" data-testid="favorite-btn">
           <img src={ whiteHeartIcon } alt="favoritar" />
         </button>
       </span>
-      <p>{strCategory}</p>
+      <p data-testid="recipe-category">{recpCat}</p>
       <ul className="list-group">
         <li className="list-group-item">
           {ingredientAndMeasure.map(({ ing, mea }, i) => (
@@ -74,40 +79,4 @@ function TelaDeReceitaEmProgresso(type) {
   );
 }
 
-/*   if (type === Drink) {
-    const { strAlcoholic, strInstructions, strDrinkThumb, strDrink } = infoRecipes;
-    return (
-      <div>
-      <div>
-        <img
-          data-testid="recipe-photo"
-          src={ strDrinkThumb }
-          alt={ strDrink }
-          width={ 300 }
-        />
-      </div>
-      <span>
-        <span>
-          <h3 data-testid="recipe-title">{strDrink}</h3>
-          <span>{strAlcoholic}</span>
-        </span>
-        <span>
-          <button type="button" data-testid="share-btn">
-            <img src={ shareIcon } alt="compartilhar" />
-          </button>
-          <button type="button" data-testid="favorite-btn">
-            <img src={ whiteHeartIcon } alt="favoritar" />
-          </button>
-        </span>
-      </span>
-      <div>
-        <h4>Instructions</h4>
-        <div data-testid="instructions">{strInstructions}</div>
-      </div>
-      <button type="button" data-testid="finish-recipe-btn">Finalizar Receita</button>
-    </div>
-  }
-
-} */
-
-export default TelaDeReceitaEmProgresso;
+export default InProgressRecipes;
