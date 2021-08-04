@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './RecipesMain.css';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { fetchCats, fetchByAll, fetchByCat } from '../service/FetchAPIs';
 import Footer from '../components/Footer';
+import contextRecipes from '../context/ContextRecipes';
 
 const catsLimit = 5;
 
 const RecipesMain = ({ type, history }) => {
-  const [recipes, setRecipes] = useState([]);
+  const { recipes, setRecipes } = useContext(contextRecipes);
+  // const [recipes, setRecipes] = useState([]);
   const [categories, setCats] = useState([]);
 
   useEffect(() => {
@@ -20,7 +22,7 @@ const RecipesMain = ({ type, history }) => {
       setRecipes(results);
     };
     getRecipes();
-  }, [type]);
+  }, [type, setRecipes]);
 
   const renderCards = () => {
     const recipesLimit = 12;
