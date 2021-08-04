@@ -6,7 +6,7 @@ import searchIcon from '../images/searchIcon.svg';
 import SearchBar from './SearchBar';
 import contextRecipes from '../context/ContextRecipes';
 
-const Header = ({ canSearch, type, history }) => {
+const Header = ({ canSearch, type, history, text }) => {
   const { enableSearch, setEnableSearch } = useContext(contextRecipes);
 
   const handleSerchClick = () => {
@@ -23,7 +23,7 @@ const Header = ({ canSearch, type, history }) => {
         <Link to="/perfil">
           <img src={ profileIcon } alt="Profile" data-testid="profile-top-btn" />
         </Link>
-        <h3 data-testid="page-title">Inicial</h3>
+        <h3 data-testid="page-title">{ text }</h3>
       </header>
       { canSearch ? (
         <button type="button" onClick={ handleSerchClick } data-testid="search-top-btn">
@@ -38,6 +38,7 @@ const Header = ({ canSearch, type, history }) => {
 Header.propTypes = {
   canSearch: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
   history: PropTypes.string.isRequired,
 };
 

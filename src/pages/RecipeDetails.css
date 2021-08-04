@@ -6,3 +6,16 @@
   bottom: 0;
   position: fixed;
 }
+
+.btn-container {
+  margin: 0 auto;
+}
+
+.rec-carousel {
+  margin: 0 auto;
+  width: 25%;
+}
+
+.rec-carousel h5 {
+  color: black;
+}

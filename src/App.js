@@ -34,12 +34,12 @@ function App() {
         <Route
           exact
           path="/comidas/:recipeId"
-          render={ (props) => <RecipesDetails { ...props } type="comida" /> }
+          render={ (props) => <RecipesDetails { ...props } type="comidas" /> }
         />
         <Route
           exact
           path="/bebidas/:recipeId"
-          render={ (props) => <RecipesDetails { ...props } type="bebida" /> }
+          render={ (props) => <RecipesDetails { ...props } type="bebidas" /> }
         />
         <Route exact path="/comidas/:recipeId/in-progress" />
         <Route exact path="/bebidas/:recipeId/in-progress" />

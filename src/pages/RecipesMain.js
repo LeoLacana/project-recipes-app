@@ -25,7 +25,7 @@ const RecipesMain = ({ type, history }) => {
   const renderCards = () => {
     const recipesLimit = 12;
     return recipes.slice(0, recipesLimit).map((r, i) => (
-      type === 'comida'
+      type === 'comidas'
         ? (
           <Link key={ r.idMeal } to={ `comidas/${r.idMeal}` }>
             <div data-testid={ `${i}-recipe-card` }>
@@ -84,7 +84,12 @@ const RecipesMain = ({ type, history }) => {
 
   return (
     <div>
-      <Header canSearch type={ type } history={ history } />
+      <Header
+        canSearch
+        type={ type }
+        history={ history }
+        text={ type === 'comidas' ? 'Comidas' : 'Bebidas' }
+      />
       <button
         type="submit"
         data-testid="All-category-filter"
