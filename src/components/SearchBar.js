@@ -49,7 +49,6 @@ export default function SearchBar({ type, history }) {
     if (valueRadioSearchBar === 'nome') {
       resultRequest = await requestName(valueInputSearchBar, type);
     }
-
     if (valueRadioSearchBar === 'primeira letra') {
       if (valueInputSearchBar.length > 1) {
         // eslint-disable-next-line no-alert
@@ -127,7 +126,6 @@ export default function SearchBar({ type, history }) {
     </form>
   );
 }
-
 SearchBar.propTypes = {
   type: PropTypes.string.isRequired,
   history: PropTypes.string.isRequired,
