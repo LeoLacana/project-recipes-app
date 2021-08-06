@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { getIngredientsMeals } from '../services/RequestRandom';
 
@@ -15,6 +16,7 @@ function FoodByIngredients() {
   return (
 
     <div>
+      <Header canSearch={ false } text="Explorar Ingredientes" />
       {ingredients.slice(0, Number('12')).map((ingredient, index) => (
         <div data-testid={ `${index}-ingredient-card` } key={ ingredient.idIngredient }>
           <img src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` } data-testid={ `${index}-card-img` } alt="" />

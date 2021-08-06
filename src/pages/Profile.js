@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 function Profile() {
@@ -9,6 +10,7 @@ function Profile() {
 
       Profile
       <div>
+        <Header canSearch={ false } text="Perfil" />
         <p data-testid="profile-email">{ user !== null ? user.email : 'email' }</p>
         <Link to="/receitas-feitas">
           <button
