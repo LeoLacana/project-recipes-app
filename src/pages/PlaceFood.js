@@ -60,7 +60,7 @@ function PlaceFood() {
           <div data-testid={ `${index}-recipe-card` }>
             <p data-testid={ `${index}-card-name` }>{meal.strMeal}</p>
             <img
-              style={ { width: 20 } }
+              style={ { width: 80 } }
               data-testid={ `${index}-card-img` }
               src={ meal.strMealThumb }
               alt={ meal.strMeal }

@@ -16,7 +16,7 @@ function Explore() {
             Explorar Comidas
           </button>
         </Link>
-        <Link to="/explorar/bebidas/">
+        <Link to="/explorar/bebidas">
           <button
             type="button"
             data-testid="explore-drinks"
