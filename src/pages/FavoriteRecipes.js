@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './FavoriteRecipes.css';
+import Header from '../components/Header';
 import BtnShare from '../components/BtnShare';
 import BtnFavorite from '../components/BtnFavorite';
 
@@ -79,6 +80,7 @@ const FavoriteRecipes = () => {
   );
   return (
     <div>
+      <Header canSearch={ false } text="Receitas Favoritas" />
       <button
         type="submit"
         onClick={ () => filterBy('all') }

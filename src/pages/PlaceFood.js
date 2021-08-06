@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { getArea, getMealsByArea, getRecomendation } from '../services/RequestRandom';
 
@@ -32,6 +33,7 @@ function PlaceFood() {
 
   return (
     <div>
+      <Header canSearch text="Explorar Origem" type="comidas" />
       <select
         data-testid="explore-by-area-dropdown"
         onChange={ mealsByArea }

@@ -26,12 +26,12 @@ function App() {
         <Route
           exact
           path="/comidas"
-          render={ (props) => <RecipesMain { ...props } type="comidas" /> }
+          render={ () => <RecipesMain type="comidas" /> }
         />
         <Route
           exact
           path="/bebidas"
-          render={ (props) => <RecipesMain { ...props } type="bebidas" /> }
+          render={ () => <RecipesMain type="bebidas" /> }
         />
         <Route
           exact

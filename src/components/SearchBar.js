@@ -1,15 +1,17 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import {
   requestIngredient,
   requestName,
   requestLetra } from '../service/RequestSearchBar';
 import contextRecipes from '../context/ContextRecipes';
 
-export default function SearchBar({ type, history }) {
+export default function SearchBar({ type }) {
   const [valueRadioSearchBar, setValueRadioSearchBar] = useState('');
   const [valueInputSearchBar, setValueInputSearchBar] = useState('');
   const { setRecipes } = useContext(contextRecipes);
+  const history = useHistory();
 
   const getValueInput = ({ target }) => {
     setValueInputSearchBar(target.value);
@@ -128,5 +130,4 @@ export default function SearchBar({ type, history }) {
 }
 SearchBar.propTypes = {
   type: PropTypes.string.isRequired,
-  history: PropTypes.string.isRequired,
 };
