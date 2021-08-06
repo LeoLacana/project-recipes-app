@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import BtnFavorite from '../components/BtnFavorite';
 import BtnShare from '../components/BtnShare';
-import shareIcon from '../images/shareIcon.svg';
-import whiteHeartIcon from '../images/whiteHeartIcon.svg';
+import IngredientAndMeasureInProgress from '../components/IngredientAndMeasureInProgress';
 import './InProgressRecipes.css';
 
 function InProgressRecipes({ type }) {
   const { recipeId } = useParams();
   const [infoRecipes, setinfoRecipes] = useState({});
   const [ingredientAndMeasure, setingredientAndMeasure] = useState([]);
-  console.log(type);
   function tranformamEmArray(e, recipes) {
     return Object.keys(recipes)
       .filter((key) => key.includes(e))
@@ -29,11 +29,6 @@ function InProgressRecipes({ type }) {
     };
     getApi();
   }, [type, recipeId]);
-
-  function addClass({ target }) {
-    if (target.parentNode.classList.value === '') target.parentNode.classList.add('o');
-    else target.parentNode.classList.remove('o');
-  }
 
   const thumb = type === 'comidas' ? infoRecipes.strMealThumb : infoRecipes.strDrinkThumb;
   const recpName = type === 'comidas' ? infoRecipes.strMeal : infoRecipes.strDrink;
@@ -55,19 +50,14 @@ function InProgressRecipes({ type }) {
       </span>
       <span>
         <BtnShare />
-        <button type="button" data-testid="favorite-btn">
-          <img src={ whiteHeartIcon } alt="favoritar" />
-        </button>
+        <BtnFavorite recipe={ infoRecipes } recipeId={ recipeId } type={ type } />
       </span>
       <p data-testid="recipe-category">{recpCat}</p>
       <ul className="list-group">
         <li className="list-group-item">
-          {ingredientAndMeasure.map(({ ing, mea }, i) => (
-            <p data-testid={ `${i}-ingredient-step` } key={ i }>
-              <input className="form-check-input me-1" type="checkbox" value="" onClick={ (e) => addClass(e) } aria-label="..." />
-              {`${ing} - ${mea}`}
-            </p>
-          ))}
+          <IngredientAndMeasureInProgress
+            ingredientAndMeasure={ ingredientAndMeasure }
+          />
         </li>
       </ul>
       <div>
@@ -80,3 +70,7 @@ function InProgressRecipes({ type }) {
 }
 
 export default InProgressRecipes;
+
+InProgressRecipes.propTypes = {
+  type: PropTypes.string.isRequired,
+};
