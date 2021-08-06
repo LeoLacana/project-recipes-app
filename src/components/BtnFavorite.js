@@ -39,7 +39,6 @@ const BtnFavorite = ({ recipe, type, recipeId }) => {
   useEffect(() => {
     const setIfDone = async () => {
       const favRecps = JSON.parse(localStorage.getItem('favoriteRecipes'));
-
       if (favRecps && findByIdArray(favRecps)) {
         setAsFav(true);
       }
