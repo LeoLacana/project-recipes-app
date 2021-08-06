@@ -13,8 +13,10 @@ let recipeMockUp = {
   image: '',
 };
 
-const BtnFavorite = ({ recipe, type, recipeId }) => {
+const BtnFavorite = ({ recipe, type, recipeId, listIndex, setFavs }) => {
   const { strCategory, strArea, strAlcoholic } = recipe;
+  const testId = typeof listIndex === 'number'
+    ? `${listIndex}-horizontal-favorite-btn` : 'favorite-btn';
   recipeMockUp = type === 'comidas'
     ? {
       id: recipeId,
@@ -34,11 +36,12 @@ const BtnFavorite = ({ recipe, type, recipeId }) => {
       name: recipe.strDrink,
       image: recipe.strDrinkThumb,
     };
+  const getLocal = () => JSON.parse(localStorage.getItem('favoriteRecipes'));
   const [isFav, setAsFav] = useState(false);
   const findByIdArray = (array) => array.find(({ id }) => id === recipeId);
   useEffect(() => {
     const setIfDone = async () => {
-      const favRecps = JSON.parse(localStorage.getItem('favoriteRecipes'));
+      const favRecps = getLocal();
       if (favRecps && findByIdArray(favRecps)) {
         setAsFav(true);
       }
@@ -46,8 +49,7 @@ const BtnFavorite = ({ recipe, type, recipeId }) => {
     setIfDone();
   }, []);
 
-  const saveAsFav = () => {
-    const favRecps = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const saveAsFav = (favRecps) => {
     if (favRecps) {
       localStorage.setItem('favoriteRecipes',
         JSON.stringify([...favRecps, recipeMockUp]));
@@ -55,20 +57,20 @@ const BtnFavorite = ({ recipe, type, recipeId }) => {
     setAsFav(true);
   };
 
-  const removeFromFav = () => {
-    const favRecps = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const removeFromFav = (favRecps) => {
     if (favRecps) {
       const newFavs = favRecps.filter(({ id }) => id !== recipeId);
       localStorage.setItem('favoriteRecipes', JSON.stringify([...newFavs]));
     }
     setAsFav(false);
+    setFavs(getLocal());
   };
 
   const changeFav = (event) => {
     event.preventDefault();
-    console.log(recipeId);
-    if (isFav) removeFromFav();
-    else saveAsFav();
+    const favRecps = getLocal();
+    if (isFav) removeFromFav(favRecps);
+    else saveAsFav(favRecps);
   };
 
   return (
@@ -79,7 +81,7 @@ const BtnFavorite = ({ recipe, type, recipeId }) => {
       <img
         src={ isFav ? blackHeartIcon : whiteHeartIcon }
         alt="btn-favorite"
-        data-testid="favorite-btn"
+        data-testid={ testId }
       />
     </button>
   );
@@ -89,6 +91,12 @@ BtnFavorite.propTypes = {
   type: PropTypes.string.isRequired,
   recipe: PropTypes.objectOf(PropTypes.string).isRequired,
   recipeId: PropTypes.string.isRequired,
+  listIndex: PropTypes.number,
+  setFavs: PropTypes.func,
+};
+BtnFavorite.defaultProps = {
+  listIndex: null,
+  setFavs: () => '',
 };
 
 export default BtnFavorite;

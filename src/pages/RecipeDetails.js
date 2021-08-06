@@ -20,6 +20,7 @@ const RecipeDetails = ({ type, match }) => {
   useEffect(() => {
     const getRecipe = async () => {
       const result = await fetchById(type, recipeId);
+      console.log(result);
       const recs = await type === 'comidas'
         ? await fetchByAll('bebida') : await fetchByAll('comidas');
       setRecipe(result[0]);
