@@ -5,8 +5,9 @@ import { Switch, Route } from 'react-router-dom';
 import RecipesMain from './pages/RecipesMain';
 import RecipesDetails from './pages/RecipeDetails';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './components/Login';
+import Login from './pages/Login';
 import pages from './pages/index';
+import InProgressRecipes from './pages/InProgressRecipes';
 
 function App() {
   return (
@@ -41,8 +42,16 @@ function App() {
           path="/bebidas/:recipeId"
           render={ (props) => <RecipesDetails { ...props } type="bebidas" /> }
         />
-        <Route exact path="/comidas/:recipeId/in-progress" />
-        <Route exact path="/bebidas/:recipeId/in-progress" />
+        <Route
+          exact
+          path="/comidas/:recipeId/in-progress"
+          render={ () => <InProgressRecipes type="comidas" /> }
+        />
+        <Route
+          exact
+          path="/bebidas/:recipeId/in-progress"
+          render={ () => <InProgressRecipes type="bebidas" /> }
+        />
         <Route exact path="/explorar" component={ pages.Explore } />
         <Route exact path="/explorar/comidas" component={ pages.ExploreFood } />
         <Route exact path="/explorar/bebidas" component={ pages.ExploreDrinks } />
