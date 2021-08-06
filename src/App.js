@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 // import rockGlass from './images/rockGlass.svg';
 import RecipesMain from './pages/RecipesMain';
 import RecipesDetails from './pages/RecipeDetails';
+import FavoriteRecipes from './pages/FavoriteRecipes';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './components/Login';
 import pages from './pages/index';
@@ -60,7 +61,7 @@ function App() {
         <Route exact path="/explorar/bebidas/area" component={ pages.NotFound } />
         <Route exact path="/perfil" component={ pages.Profile } />
         <Route exact path="/receitas-feitas" />
-        <Route exact path="/receitas-favoritas" />
+        <Route exact path="/receitas-favoritas" component={ FavoriteRecipes } />
       </Switch>
     </div>
   );
