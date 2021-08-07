@@ -53,15 +53,17 @@ export default function SearchBar({ type }) {
     }
     if (valueRadioSearchBar === 'primeira letra') {
       if (valueInputSearchBar.length > 1) {
-        // eslint-disable-next-line no-alert
-        return alert('Sua busca deve conter somente 1 (um) caracter');
+        const customAlert = alert;
+        return customAlert('Sua busca deve conter somente 1 (um) caracter');
       }
       resultRequest = await requestLetra(valueInputSearchBar, type);
     }
     // console.log(resultRequest);
     if (!resultRequest) {
-      // eslint-disable-next-line no-alert
-      alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+      const customAlert = alert;
+      return customAlert(
+        'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+      );
     }
     showSearchRequestResult(resultRequest);
   };

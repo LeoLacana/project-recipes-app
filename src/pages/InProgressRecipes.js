@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import BtnFavorite from '../components/BtnFavorite';
 import BtnShare from '../components/BtnShare';
@@ -7,6 +7,7 @@ import IngredientAndMeasureInProgress from '../components/IngredientAndMeasureIn
 import './InProgressRecipes.css';
 
 function InProgressRecipes({ type }) {
+  const history = useHistory();
   const { recipeId } = useParams();
   const [infoRecipes, setinfoRecipes] = useState({});
   const [ingredientAndMeasure, setingredientAndMeasure] = useState([]);
@@ -16,6 +17,12 @@ function InProgressRecipes({ type }) {
       .map((key) => recipes[key])
       .filter((recipe) => recipe !== '' && recipe !== null);
   }
+
+  const setRecipeLocalStorage = () => {
+    localStorage.setItem(`${infoRecipes.strMeal}`, JSON.stringify(infoRecipes));
+    history.push('/receitas-feitas');
+  };
+
   useEffect(() => {
     const getApi = async () => {
       const url = type === 'comidas' ? `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${recipeId}` : `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${recipeId}`;
@@ -64,7 +71,13 @@ function InProgressRecipes({ type }) {
         <h4>Instructions</h4>
         <div data-testid="instructions">{strInstructions}</div>
       </div>
-      <button type="button" data-testid="finish-recipe-btn">Finalizar Receita</button>
+      <button
+        type="button"
+        data-testid="finish-recipe-btn"
+        onClick={ setRecipeLocalStorage }
+      >
+        Finalizar Receita
+      </button>
     </div>
   );
 }
