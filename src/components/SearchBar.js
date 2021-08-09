@@ -12,6 +12,7 @@ export default function SearchBar({ type }) {
   const [valueInputSearchBar, setValueInputSearchBar] = useState('');
   const { setRecipes } = useContext(contextRecipes);
   const history = useHistory();
+  const customAlert = window.alert;
 
   const getValueInput = ({ target }) => {
     setValueInputSearchBar(target.value);
@@ -46,22 +47,22 @@ export default function SearchBar({ type }) {
     let resultRequest;
     if (valueRadioSearchBar === 'ingrediente') {
       resultRequest = await requestIngredient(valueInputSearchBar, type);
-      console.log(resultRequest);
+      // console.log(resultRequest);
     }
     if (valueRadioSearchBar === 'nome') {
       resultRequest = await requestName(valueInputSearchBar, type);
     }
     if (valueRadioSearchBar === 'primeira letra') {
       if (valueInputSearchBar.length > 1) {
-        // eslint-disable-next-line no-alert
-        return alert('Sua busca deve conter somente 1 (um) caracter');
+        return customAlert('Sua busca deve conter somente 1 (um) caracter');
       }
       resultRequest = await requestLetra(valueInputSearchBar, type);
     }
     // console.log(resultRequest);
     if (!resultRequest) {
-      // eslint-disable-next-line no-alert
-      alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
+      return customAlert(
+        'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+      );
     }
     showSearchRequestResult(resultRequest);
   };

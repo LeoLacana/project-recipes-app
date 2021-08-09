@@ -1,7 +1,7 @@
 import React from 'react';
 
 function IngredientAndMeasureInProgress({ ingredientAndMeasure }) {
-  console.log(ingredientAndMeasure);
+  // console.log(ingredientAndMeasure);
   function addClass({ target }) {
     if (target.parentNode.classList.value === '') target.parentNode.classList.add('o');
     else target.parentNode.classList.remove('o');
