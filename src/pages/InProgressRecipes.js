@@ -56,6 +56,8 @@ function InProgressRecipes({ type }) {
       <ul className="list-group">
         <li className="list-group-item">
           <IngredientAndMeasureInProgress
+            recipeId={ recipeId }
+            type={ type }
             ingredientAndMeasure={ ingredientAndMeasure }
           />
         </li>
