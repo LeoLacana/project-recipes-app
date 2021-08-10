@@ -16,7 +16,7 @@ export default function SearchBar({ type }) {
 
   const getValueInput = ({ target }) => {
     setValueInputSearchBar(target.value);
-    console.log(type);
+    console.log(target.value);
   };
 
   const showSearchRequestResult = (resultRequest) => {
@@ -64,7 +64,7 @@ export default function SearchBar({ type }) {
         'Sinto muito, não encontramos nenhuma receita para esses filtros.',
       );
     }
-    showSearchRequestResult(resultRequest);
+    await showSearchRequestResult(resultRequest);
   };
 
   return (
