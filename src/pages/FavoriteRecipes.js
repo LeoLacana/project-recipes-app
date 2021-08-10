@@ -20,20 +20,22 @@ const FavoriteRecipes = () => {
 
   const filterBy = (filtType) => {
     const favRecps = getLocal();
-    switch (filtType) {
-    case 'food': {
-      const byFood = favRecps.filter(({ type }) => type === 'comida');
-      setFavs(byFood);
-      break;
-    }
-    case 'drink': {
-      const byDrink = favRecps.filter(({ type }) => type === 'bebida');
-      setFavs(byDrink);
-      break;
-    }
-    default:
-      setFavs(favRecps);
-      break;
+    if (favRecps) {
+      switch (filtType) {
+      case 'food': {
+        const byFood = favRecps.filter(({ type }) => type === 'comida');
+        setFavs(byFood);
+        break;
+      }
+      case 'drink': {
+        const byDrink = favRecps.filter(({ type }) => type === 'bebida');
+        setFavs(byDrink);
+        break;
+      }
+      default:
+        setFavs(favRecps);
+        break;
+      }
     }
   };
 

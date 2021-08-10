@@ -35,6 +35,8 @@ export default function ProviderMainScreen({ children }) {
   const [enableSearch, setEnableSearch] = useState(true);
   const [typeSearchRoute, setTypeSearchRoute] = useState();
   const [recipes, setRecipes] = useState([]);
+  const [isByIng, setAsByIng] = useState(false);
+  const [currIng, setCurrIng] = useState('');
 
   const recipesState = {
     enableSearch,
@@ -43,6 +45,10 @@ export default function ProviderMainScreen({ children }) {
     setTypeSearchRoute,
     recipes,
     setRecipes,
+    isByIng,
+    setAsByIng,
+    currIng,
+    setCurrIng,
   };
 
   return (
