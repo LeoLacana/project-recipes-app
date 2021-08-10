@@ -8,7 +8,6 @@ function Profile() {
   return (
     <>
 
-      Profile
       <div>
         <Header canSearch={ false } text="Perfil" />
         <p data-testid="profile-email">{ user !== null ? user.email : 'email' }</p>
