@@ -35,9 +35,8 @@ function InProgressRecipes({ type }) {
       const measure = tranformamEmArray('strMeasure', recipes);
       setingredientAndMeasure(ingredient.map((e, i) => ({ ing: e, mea: measure[i] })));
     };
-    console.log('opa');
     getApi();
-  }, []);
+  }, [type, recipeId]);
 
   const thumb = type === 'comidas' ? infoRecipes.strMealThumb : infoRecipes.strDrinkThumb;
   const recpName = type === 'comidas' ? infoRecipes.strMeal : infoRecipes.strDrink;
