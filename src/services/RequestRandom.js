@@ -41,3 +41,15 @@ export async function getRecomendation() {
     .then((data) => data.json());
   return responseApi.meals;
 }
+
+export async function getByIngredientsMeals(ingredient) {
+  const { meals } = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
+    .then((data) => data.json());
+  return meals;
+}
+
+export async function getByIngredientsDrinks(ingredient) {
+  const { drinks } = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`)
+    .then((data) => data.json());
+  return drinks;
+}
