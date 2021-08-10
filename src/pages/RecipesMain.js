@@ -22,7 +22,8 @@ const RecipesMain = ({ type }) => {
       setRecipes(results);
     };
     getRecipes();
-  }, [type, setRecipes]);
+    console.log('chamou');
+  }, []);
 
   const renderCards = () => {
     const recipesLimit = 12;
