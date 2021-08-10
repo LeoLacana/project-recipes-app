@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { getIngredientsMeals, getByIngredientsMeals } from '../services/RequestRandom';
+import contextRecipes from '../context/ContextRecipes';
 
 function FoodByIngredients() {
   const [ingredients, setIngredients] = useState([]);
   const [redirect, setRedirect] = useState(false);
+  const { setAsByIng, setCurrIng } = useContext(contextRecipes);
 
   useEffect(() => {
     getIngredientsMeals().then((response) => {
@@ -17,6 +19,8 @@ function FoodByIngredients() {
 
   const handleClick = (ingredient) => {
     getByIngredientsMeals(ingredient);
+    setAsByIng(true);
+    setCurrIng(ingredient);
     setRedirect(true);
   };
 

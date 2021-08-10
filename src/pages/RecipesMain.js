@@ -6,11 +6,17 @@ import Header from '../components/Header';
 import { fetchCats, fetchByAll, fetchByCat } from '../service/FetchAPIs';
 import Footer from '../components/Footer';
 import contextRecipes from '../context/ContextRecipes';
+import { requestIngredient } from '../service/RequestSearchBar';
 
 const catsLimit = 5;
 
 const RecipesMain = ({ type }) => {
-  const { recipes, setRecipes } = useContext(contextRecipes);
+  const {
+    recipes,
+    setRecipes,
+    isByIng,
+    setAsByIng,
+    currIng } = useContext(contextRecipes);
   // const [recipes, setRecipes] = useState([]);
   const [categories, setCats] = useState([]);
 
@@ -18,8 +24,14 @@ const RecipesMain = ({ type }) => {
     const getRecipes = async () => {
       const cats = await fetchCats(type);
       setCats(cats);
-      const results = await fetchByAll(type);
-      setRecipes(results);
+      if (!isByIng) {
+        const results = await fetchByAll(type);
+        setRecipes(results);
+      } else {
+        const results = await requestIngredient(currIng, type);
+        setRecipes(results);
+        setAsByIng(false);
+      }
     };
     getRecipes();
   }, [type, setRecipes]);

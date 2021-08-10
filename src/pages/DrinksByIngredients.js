@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { getIngredientes, getByIngredientsDrinks } from '../services/RequestRandom';
+import contextRecipes from '../context/ContextRecipes';
 
 function DrinksByIngredients() {
   const [ingredients, setIngredients] = useState([]);
   const [redirect, setRedirect] = useState(false);
+  const { setAsByIng, setCurrIng } = useContext(contextRecipes);
 
   useEffect(() => {
     getIngredientes().then((response) => {
@@ -17,8 +19,9 @@ function DrinksByIngredients() {
 
   const handleCLick = (ingredient) => {
     getByIngredientsDrinks(ingredient);
+    setAsByIng(true);
+    setCurrIng(ingredient);
     setRedirect(true);
-    console.log(ingredient);
   };
 
   if (!ingredients.length) return <div>Loading...</div>;
