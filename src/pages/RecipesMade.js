@@ -73,7 +73,7 @@ export default function RecipesMade() {
             <BtnShare />
           </div>
           <div>
-            { vamola(recipe.tags, index) }
+            { vamola(recipe.tags) }
             { a.map((r) => r.map((x) => (
               <div key={ index } data-testid={ `${index}-${x}-horizontal-tag` }>
                 { x }
