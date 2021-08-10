@@ -120,7 +120,7 @@ export default function SearchBar({ type }) {
       <button
         type="button"
         data-testid="exec-search-btn"
-        onClick={ handleSearchBar }
+        onClick={ () => handleSearchBar() }
         id="exerc-search-btn"
         className="btn btn-secondary"
       >
