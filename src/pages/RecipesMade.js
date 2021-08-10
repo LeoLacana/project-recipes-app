@@ -2,8 +2,6 @@ import React from 'react';
 import Header from '../components/Header';
 import BtnShare from '../components/BtnShare';
 
-import './RecipesMade.css';
-
 export default function RecipesMade() {
   const recipesDone = JSON.parse(localStorage.getItem('doneRecipes'));
   const a = [];
