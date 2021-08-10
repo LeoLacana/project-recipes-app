@@ -11,7 +11,6 @@ const catsLimit = 5;
 
 const RecipesMain = ({ type }) => {
   const { recipes, setRecipes } = useContext(contextRecipes);
-  // const [recipes, setRecipes] = useState([]);
   const [categories, setCats] = useState([]);
 
   useEffect(() => {
