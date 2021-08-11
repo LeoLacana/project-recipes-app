@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import BtnFavorite from '../components/BtnFavorite';
 import BtnShare from '../components/BtnShare';
@@ -8,6 +8,7 @@ import './InProgressRecipes.css';
 
 function InProgressRecipes({ type }) {
   const history = useHistory();
+  const { pathname } = useLocation();
   const { recipeId } = useParams();
   const [infoRecipes, setinfoRecipes] = useState({});
   const [ingredientAndMeasure, setingredientAndMeasure] = useState([]);
@@ -64,7 +65,7 @@ function InProgressRecipes({ type }) {
         {recpName}
       </span>
       <span>
-        <BtnShare />
+        <BtnShare endPoint={ pathname.split('/in-progress')[0] } />
         <BtnFavorite recipe={ infoRecipes } recipeId={ recipeId } type={ type } />
       </span>
       <p data-testid="recipe-category">{recpCat}</p>

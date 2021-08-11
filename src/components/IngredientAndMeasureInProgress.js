@@ -73,7 +73,6 @@ function IngredientAndMeasureInProgress({
   function addClass({ target }, index) {
     if (target.parentNode.classList.value === '') {
       target.parentNode.classList.add('o');
-      /* target.classList.add('o'); */
       addLocaStorage(index);
     } else {
       target.parentNode.classList.remove('o');
