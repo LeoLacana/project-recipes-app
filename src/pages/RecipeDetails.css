@@ -11,11 +11,53 @@
   margin: 0 auto;
 }
 
-.rec-carousel {
-  margin: 0 auto;
-  width: 25%;
+.carousel {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 1em auto 30px;
+  overflow: auto;
+  padding: 1% 0;
+  width: 100%;
 }
 
-.rec-carousel h5 {
-  color: black;
+.reco-card {
+  border-radius: 15px 15px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 0.5%;
+  max-height: 200px;
+  min-height: 200px;
+  min-width: 49%;
+  overflow: hidden;
+  position: relative;
+}
+
+.reco-card .recipe-img {
+  object-fit: cover;
+  width: 100%;
+}
+
+.reco-card span {
+  background-image: linear-gradient(to bottom, transparent, var(--five));
+  bottom: 0;
+  color: white;
+  font-size: 1em;
+  font-weight: 600;
+  margin-bottom: -2px;
+  overflow: hidden;
+  padding: 20px 10px;
+  position: absolute;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+
+@media screen and ( max-width : 500px ) {
+
+  .meal-video {
+    margin: 0 5%;
+    width: 90%;
+  }
 }

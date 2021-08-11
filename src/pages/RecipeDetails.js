@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Carousel from 'react-bootstrap/Carousel';
 import './RecipeDetails.css';
 import PropTypes from 'prop-types';
 import BtnStartRecipe from '../components/BtnStartRecipe';
@@ -50,19 +49,21 @@ const RecipeDetails = ({ type, match }) => {
   }, [recipe, type]);
 
   const renderRecomendations = () => (
-    <Carousel className="rec-carousel" variant="dark">
+    <div className="carousel">
       {recomendations.slice(0, mgc6).map((r, i) => {
         const thumb = type === 'comidas' ? r.strDrinkThumb : r.strMealThumb;
         const recName = type === 'comidas' ? r.strDrink : r.strMeal;
         return (
-          <Carousel.Item key={ `rec-${i}` } data-testid={ `${i}-recomendation-card` }>
-            <img src={ thumb } alt={ recName } className="w-100" />
-            <Carousel.Caption>
-              <h5 data-testid={ `${i}-recomendation-title` }>{ recName }</h5>
-            </Carousel.Caption>
-          </Carousel.Item>);
+          <div
+            key={ `rec-${i}` }
+            data-testid={ `${i}-recomendation-card` }
+            className="reco-card"
+          >
+            <img src={ thumb } alt={ recName } className="recipe-img" />
+            <span data-testid={ `${i}-recomendation-title` }>{ recName }</span>
+          </div>);
       })}
-    </Carousel>
+    </div>
   );
 
   const recipeInfo = () => {
@@ -92,6 +93,7 @@ const RecipeDetails = ({ type, match }) => {
             <object
               data-testid="video"
               aria-label="meal-video"
+              className="meal-video"
               width="400"
               height="300"
               data={ mealVideo }
