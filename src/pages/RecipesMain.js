@@ -17,7 +17,6 @@ const RecipesMain = ({ type }) => {
     isByIng,
     setAsByIng,
     currIng } = useContext(contextRecipes);
-  // const [recipes, setRecipes] = useState([]);
   const [categories, setCats] = useState([]);
 
   useEffect(() => {
@@ -34,8 +33,8 @@ const RecipesMain = ({ type }) => {
       }
     };
     getRecipes();
-  }, [type, setRecipes]);
-
+    console.log('chamou');
+  }, []);
   const renderCards = () => {
     const recipesLimit = 12;
     return recipes.slice(0, recipesLimit).map((r, i) => (
@@ -66,7 +65,6 @@ const RecipesMain = ({ type }) => {
           </Link>)
     ));
   };
-
   const searchByCategory = async (event, cat) => {
     const { classList } = event.target;
     // if (classList.values.includes("select"))
@@ -86,7 +84,6 @@ const RecipesMain = ({ type }) => {
       classList.remove('selected');
     }
   };
-
   const searchByAll = async () => {
     const btns = document.querySelectorAll('.cat-btn');
     btns.forEach((btn) => {
@@ -95,7 +92,6 @@ const RecipesMain = ({ type }) => {
     const results = await fetchByAll(type);
     setRecipes(results);
   };
-
   return (
     <div>
       <Header
@@ -127,9 +123,7 @@ const RecipesMain = ({ type }) => {
     </div>
   );
 };
-
 RecipesMain.propTypes = {
   type: PropTypes.string.isRequired,
 };
-
 export default RecipesMain;

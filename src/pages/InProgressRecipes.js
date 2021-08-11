@@ -5,6 +5,7 @@ import BtnFavorite from '../components/BtnFavorite';
 import BtnShare from '../components/BtnShare';
 import IngredientAndMeasureInProgress from '../components/IngredientAndMeasureInProgress';
 import './InProgressRecipes.css';
+import { setRecipeLocalStorage } from '../components/SetRecipesStorage';
 
 function InProgressRecipes({ type }) {
   const history = useHistory();
@@ -21,8 +22,8 @@ function InProgressRecipes({ type }) {
       .filter((recipe) => recipe !== '' && recipe !== null);
   }
 
-  const setRecipeLocalStorage = () => {
-    localStorage.setItem(`${infoRecipes.strMeal}`, JSON.stringify(infoRecipes));
+  const recipeDone = () => {
+    setRecipeLocalStorage(infoRecipes, type);
     history.push('/receitas-feitas');
   };
 
@@ -86,7 +87,7 @@ function InProgressRecipes({ type }) {
       <button
         type="button"
         data-testid="finish-recipe-btn"
-        onClick={ setRecipeLocalStorage }
+        onClick={ recipeDone }
         disabled={ button }
       >
         Finalizar Receita
