@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import BtnShare from '../components/BtnShare';
-import shareIcon from '../images/shareIcon.svg';
 import './RecipesMade.css';
 
 export default function RecipesMade() {
@@ -44,9 +44,9 @@ export default function RecipesMade() {
     }
   };
 
-  const renderShareBtn = (type, id, index) => (
-    <BtnShare endPoint={ `/${type}s/${id}` } listIndex={ index } />
-  );
+  // const renderShareBtn = (type, id, index) => (
+  //   <BtnShare endPoint={ `/${type}s/${id}` } listIndex={ index } />
+  // );
 
   return (
     <div>
@@ -80,17 +80,20 @@ export default function RecipesMade() {
       </button>
       { !recipesFiltered ? '' : (recipesFiltered.map((recipe, index) => (
         <div key={ recipe.id } className="cart-recipe-done">
-          <img
-            alt={ recipe.name }
-            src={ recipe.image }
-            data-testid={ `${index}-horizontal-image` }
-            className="image-recipe-made"
-          />
-          <h1
-            data-testid={ `${index}-horizontal-name` }
-          >
-            { recipe.name }
-          </h1>
+          <Link to={ `/${recipe.type}s/${recipe.id}` }>
+            <img
+              alt={ recipe.name }
+              src={ recipe.image }
+              data-testid={ `${index}-horizontal-image` }
+              className="image-recipe-made"
+            />
+
+            <h1
+              data-testid={ `${index}-horizontal-name` }
+            >
+              { recipe.name }
+            </h1>
+          </Link>
           <h3
             className="horizontal-top-text"
             data-testid={ `${index}-horizontal-top-text` }
@@ -113,11 +116,8 @@ export default function RecipesMade() {
               </div>
             ))) }
           </div>
-          <div
-            data-testid={ `${index}-horizontal-share-btn` }
-            src={ shareIcon }
-          >
-            { renderShareBtn(recipe.type, recipe.id, index) }
+          <div>
+            <BtnShare endPoint={ `/${recipe.type}s/${recipe.id}` } listIndex={ index } />
           </div>
         </div>
       ))) }

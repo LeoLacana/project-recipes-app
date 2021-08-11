@@ -59,14 +59,12 @@ export default function SearchBar({ type }) {
       resultRequest = await requestLetra(valueInputSearchBar, type);
     }
     // console.log(resultRequest);
-    // if (!resultRequest) {
-    //   return customAlert(
-    //     'Sinto muito, não encontramos nenhuma receita para esses filtros.',
-    //   );
-    // }
-    if (resultRequest) {
-      showSearchRequestResult(resultRequest);
+    if (!resultRequest) {
+      return customAlert(
+        'Sinto muito, não encontramos nenhuma receita para esses filtros.',
+      );
     }
+    await showSearchRequestResult(resultRequest);
   };
 
   return (

@@ -3,11 +3,11 @@ export const requestIngredient = async (ingrediente, type) => {
   const ingredientRequest = await fetch(ingredientUrl);
   const mealOrDrinks = type === 'comidas' ? 'meals' : 'drinks';
   return ingredientRequest.json()
-    .then((r) => r[`${mealOrDrinks}`]);
-  // .catch(() => {
-  //   const b = [];
-  //   return b;
-  // });
+    .then((r) => r[`${mealOrDrinks}`])
+    .catch(() => {
+      const b = [];
+      return b;
+    });
 };
 
 export const requestName = async (nome, type) => {
@@ -15,11 +15,11 @@ export const requestName = async (nome, type) => {
   const nameRequest = await fetch(nameUrl);
   const mealOrDrinks = type === 'comidas' ? 'meals' : 'drinks';
   return nameRequest.json()
-    .then((r) => r[`${mealOrDrinks}`]);
-  // .catch(() => {
-  //   const b = [];
-  //   return b;
-  // });
+    .then((r) => r[`${mealOrDrinks}`])
+    .catch(() => {
+      const b = [];
+      return b;
+    });
 };
 
 export const requestLetra = async (primeiraLetra, type) => {
@@ -27,11 +27,11 @@ export const requestLetra = async (primeiraLetra, type) => {
   const primeiraLetraRequest = await fetch(primeiraLetraUrl);
   const mealOrDrinks = type === 'comidas' ? 'meals' : 'drinks';
   return primeiraLetraRequest.json()
-    .then((r) => r[`${mealOrDrinks}`]);
-  // .catch(() => {
-  //   const b = [];
-  //   return b;
-  // });
+    .then((r) => r[`${mealOrDrinks}`])
+    .catch(() => {
+      const b = [];
+      return b;
+    });
 };
 
 export default {
