@@ -1,6 +1,6 @@
 .footer-menu {
   align-items: center;
-  background-color: #ea1d2c;
+  background-color: #213037;
   bottom: 0;
   display: flex;
   flex-direction: row;
@@ -8,4 +8,31 @@
   padding: 10px;
   position: fixed;
   width: 100%;
+}
+
+.main-buttons {
+  background-color: transparent;
+  border: 0;
+}
+
+.main-buttons img {
+
+  /* filter: invert(84%)
+    sepia(17%) saturate(4311%) hue-rotate(335deg) brightness(112%) contrast(104%); */
+
+  /* filter: invert(94%)
+    sepia(40%) saturate(2%) hue-rotate(152deg) brightness(112%) contrast(101%); */
+  filter: invert(69%)
+    sepia(86%) saturate(433%) hue-rotate(345deg) brightness(101%) contrast(94%);
+}
+
+@media screen and ( max-width : 500px ) {
+
+  .footer-menu {
+    max-height: 50px;
+  }
+
+  .footer-menu button:focus {
+    outline: none;
+  }
 }
