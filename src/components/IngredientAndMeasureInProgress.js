@@ -4,12 +4,23 @@ const cocktaileAndMeals = {
   cocktails: {},
   meals: {},
 };
-function IngredientAndMeasureInProgress({ recipeId, type, ingredientAndMeasure }) {
+function IngredientAndMeasureInProgress({
+  recipeId,
+  type,
+  ingredientAndMeasure,
+  changeButton }) {
   const [state, setstate] = useState([]);
+  const [verifyRecipe, setverifyRecipe] = useState([0]);
 
   const findByIdObject = (obj) => (type === 'comidas'
     ? obj.meals[recipeId]
     : obj.cocktails[recipeId]);
+
+  useEffect(() => {
+    if (verifyRecipe.length === ingredientAndMeasure.length) {
+      changeButton(false);
+    } else changeButton(true);
+  }, [verifyRecipe]);
 
   useEffect(() => {
     const recpsInProg = async () => {
@@ -18,6 +29,7 @@ function IngredientAndMeasureInProgress({ recipeId, type, ingredientAndMeasure }
         const a = findByIdObject(recpsinprog);
         if (a) {
           setstate(a);
+          setverifyRecipe(a);
         }
       } else {
         localStorage.setItem('inProgressRecipes', JSON.stringify(cocktaileAndMeals));
@@ -25,10 +37,12 @@ function IngredientAndMeasureInProgress({ recipeId, type, ingredientAndMeasure }
     };
     recpsInProg();
   }, []);
+
   function addLocaStorage(index) {
     const drinkOrMeals = type === 'comidas' ? 'meals' : 'cocktails';
     const local = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (local[drinkOrMeals][recipeId]) {
+      setverifyRecipe([...verifyRecipe, index]);
       const newLocal = {
         ...local,
         [drinkOrMeals]: {
@@ -41,6 +55,8 @@ function IngredientAndMeasureInProgress({ recipeId, type, ingredientAndMeasure }
       };
       localStorage.setItem('inProgressRecipes', JSON.stringify(newLocal));
     } else {
+      setverifyRecipe([index]);
+      console.log(verifyRecipe);
       const newLocal = {
         ...local,
         [drinkOrMeals]: {
@@ -53,10 +69,11 @@ function IngredientAndMeasureInProgress({ recipeId, type, ingredientAndMeasure }
       localStorage.setItem('inProgressRecipes', JSON.stringify(newLocal));
     }
   }
+
   function addClass({ target }, index) {
     if (target.parentNode.classList.value === '') {
       target.parentNode.classList.add('o');
-      target.classList.add('o');
+      /* target.classList.add('o'); */
       addLocaStorage(index);
     } else {
       target.parentNode.classList.remove('o');
@@ -71,9 +88,9 @@ function IngredientAndMeasureInProgress({ recipeId, type, ingredientAndMeasure }
         },
       };
       localStorage.setItem('inProgressRecipes', JSON.stringify(newLocal));
+      setverifyRecipe(newIndex);
     }
   }
-  console.log(state);
   return (
     ingredientAndMeasure.map(({ ing, mea }, index) => {
       const checkClasseP = state.includes(index) ? 'o' : '';

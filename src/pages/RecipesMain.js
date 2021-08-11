@@ -1,33 +1,47 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './RecipesMain.css';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import { fetchCats, fetchByAll, fetchByCat } from '../service/FetchAPIs';
 import Footer from '../components/Footer';
+import contextRecipes from '../context/ContextRecipes';
+import { requestIngredient } from '../service/RequestSearchBar';
 
 const catsLimit = 5;
 
-const RecipesMain = ({ type, history }) => {
-  const [recipes, setRecipes] = useState([]);
+const RecipesMain = ({ type }) => {
+  const {
+    recipes,
+    setRecipes,
+    isByIng,
+    setAsByIng,
+    currIng } = useContext(contextRecipes);
+  // const [recipes, setRecipes] = useState([]);
   const [categories, setCats] = useState([]);
 
   useEffect(() => {
     const getRecipes = async () => {
       const cats = await fetchCats(type);
       setCats(cats);
-      const results = await fetchByAll(type);
-      setRecipes(results);
+      if (!isByIng) {
+        const results = await fetchByAll(type);
+        setRecipes(results);
+      } else {
+        const results = await requestIngredient(currIng, type);
+        setRecipes(results);
+        setAsByIng(false);
+      }
     };
     getRecipes();
-  }, [type]);
+  }, [type, setRecipes]);
 
   const renderCards = () => {
     const recipesLimit = 12;
     return recipes.slice(0, recipesLimit).map((r, i) => (
       type === 'comidas'
         ? (
-          <Link key={ r.idMeal } to={ `comidas/${r.idMeal}` }>
+          <Link key={ `${i} - ${r.idMeal}` } to={ `comidas/${r.idMeal}` }>
             <div data-testid={ `${i}-recipe-card` }>
               <span data-testid={ `${i}-card-name` }>{r.strMeal}</span>
               <img
@@ -39,7 +53,7 @@ const RecipesMain = ({ type, history }) => {
             </div>
           </Link>)
         : (
-          <Link key={ r.idDrink } to={ `bebidas/${r.idDrink}` }>
+          <Link key={ `${i} - ${r.idDrink}` } to={ `bebidas/${r.idDrink}` }>
             <div data-testid={ `${i}-recipe-card` }>
               <span data-testid={ `${i}-card-name` }>{r.strDrink}</span>
               <img
@@ -87,7 +101,6 @@ const RecipesMain = ({ type, history }) => {
       <Header
         canSearch
         type={ type }
-        history={ history }
         text={ type === 'comidas' ? 'Comidas' : 'Bebidas' }
       />
       <button
@@ -117,7 +130,6 @@ const RecipesMain = ({ type, history }) => {
 
 RecipesMain.propTypes = {
   type: PropTypes.string.isRequired,
-  history: PropTypes.string.isRequired,
 };
 
 export default RecipesMain;

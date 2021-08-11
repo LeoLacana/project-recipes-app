@@ -1,11 +1,12 @@
 import React from 'react';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ExploreButtons from '../components/ExploreButtons';
 
 function ExploreDrinks() {
   return (
     <div>
-      ExploreDrinks
+      <Header canSearch={ false } text="Explorar Bebidas" />
       <ExploreButtons />
       <Footer />
     </div>

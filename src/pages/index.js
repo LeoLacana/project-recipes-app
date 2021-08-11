@@ -6,6 +6,7 @@ import ExploreFood from './ExploreFood';
 import Profile from './Profile';
 import PlaceFood from './PlaceFood';
 import NotFound from './NotFound';
+import RecipesMade from './RecipesMade';
 
 const pages = {
   Explore,
@@ -16,7 +17,7 @@ const pages = {
   Profile,
   PlaceFood,
   NotFound,
-
+  RecipesMade,
 };
 
 export default pages;

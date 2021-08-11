@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { getArea, getMealsByArea, getRecomendation } from '../services/RequestRandom';
 
@@ -32,6 +33,7 @@ function PlaceFood() {
 
   return (
     <div>
+      <Header canSearch text="Explorar Origem" type="comidas" />
       <select
         data-testid="explore-by-area-dropdown"
         onChange={ mealsByArea }
@@ -60,7 +62,7 @@ function PlaceFood() {
           <div data-testid={ `${index}-recipe-card` }>
             <p data-testid={ `${index}-card-name` }>{meal.strMeal}</p>
             <img
-              style={ { width: 20 } }
+              style={ { width: 80 } }
               data-testid={ `${index}-card-img` }
               src={ meal.strMealThumb }
               alt={ meal.strMeal }
