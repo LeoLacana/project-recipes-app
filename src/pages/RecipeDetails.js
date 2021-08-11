@@ -26,7 +26,7 @@ const RecipeDetails = ({ type, match }) => {
       setRecs(recs);
     };
     getRecipe();
-  }, [recipeId, type]);
+  }, [recipeId]);
 
   useEffect(() => {
     const getIngs = async () => {
@@ -46,7 +46,7 @@ const RecipeDetails = ({ type, match }) => {
       const vidEndPoint = recipe.strYoutube.split('=')[1];
       setVideo(`https://www.youtube-nocookie.com/v/${vidEndPoint}`);
     }
-  }, [recipe, type]);
+  }, [recipe]);
 
   const renderRecomendations = () => (
     <div className="carousel">

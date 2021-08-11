@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import BtnFavorite from '../components/BtnFavorite';
 import BtnShare from '../components/BtnShare';
 import IngredientAndMeasureInProgress from '../components/IngredientAndMeasureInProgress';
 import './InProgressRecipes.css';
+import { setRecipeLocalStorage } from '../components/SetRecipesStorage';
 
 function InProgressRecipes({ type }) {
   const history = useHistory();
+  const { pathname } = useLocation();
   const { recipeId } = useParams();
   const [infoRecipes, setinfoRecipes] = useState({});
   const [ingredientAndMeasure, setingredientAndMeasure] = useState([]);
+  const [button, setbutton] = useState(true);
+
   function tranformamEmArray(e, recipes) {
     return Object.keys(recipes)
       .filter((key) => key.includes(e))
@@ -18,8 +22,8 @@ function InProgressRecipes({ type }) {
       .filter((recipe) => recipe !== '' && recipe !== null);
   }
 
-  const setRecipeLocalStorage = () => {
-    localStorage.setItem(`${infoRecipes.strMeal}`, JSON.stringify(infoRecipes));
+  const recipeDone = () => {
+    setRecipeLocalStorage(infoRecipes, type);
     history.push('/receitas-feitas');
   };
 
@@ -42,6 +46,12 @@ function InProgressRecipes({ type }) {
   const recpCat = type === 'comidas' ? infoRecipes.strCategory : infoRecipes.strAlcoholic;
   const { strInstructions } = infoRecipes;
 
+  function changeButton(params) {
+    if (params === false) {
+      setbutton(false);
+    } else setbutton(true);
+  }
+
   return (
     <div>
       <div>
@@ -56,14 +66,17 @@ function InProgressRecipes({ type }) {
         {recpName}
       </span>
       <span>
-        <BtnShare />
+        <BtnShare endPoint={ pathname.split('/in-progress')[0] } />
         <BtnFavorite recipe={ infoRecipes } recipeId={ recipeId } type={ type } />
       </span>
       <p data-testid="recipe-category">{recpCat}</p>
       <ul className="list-group">
         <li className="list-group-item">
           <IngredientAndMeasureInProgress
+            recipeId={ recipeId }
+            type={ type }
             ingredientAndMeasure={ ingredientAndMeasure }
+            changeButton={ changeButton }
           />
         </li>
       </ul>
@@ -74,7 +87,8 @@ function InProgressRecipes({ type }) {
       <button
         type="button"
         data-testid="finish-recipe-btn"
-        onClick={ setRecipeLocalStorage }
+        onClick={ recipeDone }
+        disabled={ button }
       >
         Finalizar Receita
       </button>
