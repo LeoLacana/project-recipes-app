@@ -34,7 +34,7 @@ const RecipesMain = ({ type }) => {
     };
     getRecipes();
     console.log('chamou');
-  }, []);
+  }, [type]);
   const renderCards = () => {
     const recipesLimit = 12;
     return recipes.slice(0, recipesLimit).map((r, i) => (

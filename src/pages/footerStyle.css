@@ -1,6 +1,6 @@
 .footer-menu {
   align-items: center;
-  background-color: #213037;
+  background-color: var(--five);
   bottom: 0;
   display: flex;
   flex-direction: row;

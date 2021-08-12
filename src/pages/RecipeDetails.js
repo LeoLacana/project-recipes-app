@@ -71,7 +71,7 @@ const RecipeDetails = ({ type, match }) => {
     const recpName = type === 'comidas' ? recipe.strMeal : recipe.strDrink;
     const recpCat = type === 'comidas' ? recipe.strCategory : recipe.strAlcoholic;
     return (
-      <div>
+      <div className="recipe-info">
         <img
           src={ thumb }
           alt={ recpName }
@@ -80,6 +80,10 @@ const RecipeDetails = ({ type, match }) => {
         />
         <h2 data-testid="recipe-title">{ recpName }</h2>
         <h4 data-testid="recipe-category">{ recpCat }</h4>
+        <div className="btn-container">
+          <BtnShare />
+          <BtnFavorite recipe={ recipe } type={ type } recipeId={ recipeId } />
+        </div>
         <ul>
           {ings.map(({ ing, meas }, i) => (
             <li key={ i } data-testid={ `${i}-ingredient-name-and-measure` }>
@@ -94,20 +98,16 @@ const RecipeDetails = ({ type, match }) => {
               data-testid="video"
               aria-label="meal-video"
               className="meal-video"
-              width="400"
-              height="300"
+              width="300"
+              height="200"
               data={ mealVideo }
             />)
           : '' }
-        <div className="btn-container">
-          <BtnShare />
-          <BtnFavorite recipe={ recipe } type={ type } recipeId={ recipeId } />
-        </div>
       </div>
     );
   };
   return (
-    <div>
+    <div className="details-page">
       { recipeInfo() }
       { renderRecomendations() }
       <BtnStartRecipe recipeId={ recipeId } type={ type } />
