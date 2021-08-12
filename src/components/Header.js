@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import './Header.css';
 import { Link } from 'react-router-dom';
 import profileIcon from '../images/profileIcon.svg';
 import searchIcon from '../images/searchIcon.svg';
@@ -19,17 +20,17 @@ const Header = ({ canSearch, type, text }) => {
 
   return (
     <div>
-      <header>
+      <header className="header">
         <Link to="/perfil">
           <img src={ profileIcon } alt="Profile" data-testid="profile-top-btn" />
         </Link>
         <h3 data-testid="page-title">{ text }</h3>
+        { canSearch ? (
+          <button type="button" onClick={ handleSerchClick } className="btn-search">
+            <img src={ searchIcon } alt="Search" data-testid="search-top-btn" />
+          </button>
+        ) : ''}
       </header>
-      { canSearch ? (
-        <button type="button" onClick={ handleSerchClick }>
-          <img src={ searchIcon } alt="Search" data-testid="search-top-btn" />
-        </button>
-      ) : ''}
       { enableSearch ? '' : <SearchBar type={ type } /> }
     </div>
   );

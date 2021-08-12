@@ -22,8 +22,8 @@ function InProgressRecipes({ type }) {
       .filter((recipe) => recipe !== '' && recipe !== null);
   }
 
-  const recipeDone = () => {
-    setRecipeLocalStorage(infoRecipes, type);
+  const recipeDone = async () => {
+    await setRecipeLocalStorage(infoRecipes, type);
     history.push('/receitas-feitas');
   };
 

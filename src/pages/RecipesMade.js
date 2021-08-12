@@ -6,7 +6,6 @@ import './RecipesMade.css';
 
 export default function RecipesMade() {
   const [recipesFiltered, setRecipesFiltered] = useState();
-  const recipesDone = JSON.parse(localStorage.getItem('doneRecipes'));
   const a = [];
   const vamola = (tag) => {
     if (tag) {
@@ -20,23 +19,27 @@ export default function RecipesMade() {
   // z
 
   useEffect(() => {
-    const setAllFilter = () => {
-      setRecipesFiltered(recipesDone);
+    const setAllFilter = async () => {
+      const recipesDone = await JSON.parse(localStorage.getItem('doneRecipes'));
+      if (recipesDone) {
+        setRecipesFiltered(recipesDone);
+      }
     };
     setAllFilter();
   }, []);
 
   const filterCompletedRecipes = (button) => {
-    if (button === 'all') {
+    const recipesDone = JSON.parse(localStorage.getItem('doneRecipes'));
+    if (button === 'all' && recipesDone) {
       return setRecipesFiltered(recipesDone);
     }
-    if (button === 'food') {
+    if (button === 'food' && recipesDone) {
       const foods = recipesDone.filter((r) => (
         r.type === 'comida'
       ));
       return setRecipesFiltered(foods);
     }
-    if (button === 'drink') {
+    if (button === 'drink' && recipesDone) {
       const drinks = recipesDone.filter((r) => (
         r.type === 'bebida'
       ));
@@ -110,8 +113,11 @@ export default function RecipesMade() {
           </h3>
           <div>
             { vamola(recipe.tags) }
-            { a.map((r) => r.map((x) => (
-              <div key={ index } data-testid={ `${index}-${x}-horizontal-tag` }>
+            { a.map((r) => r.map((x, i) => (
+              <div
+                key={ `${index} - ${i}` }
+                data-testid={ `${index}-${x}-horizontal-tag` }
+              >
                 { x }
               </div>
             ))) }
