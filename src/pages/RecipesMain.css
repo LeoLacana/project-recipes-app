@@ -36,9 +36,11 @@
 @media screen and ( max-width : 500px ) {
 
   .cat-cont {
+    align-items: baseline;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     margin-top: 3px;
+    overflow: scroll;
   }
 
   .cat-btn {
@@ -46,8 +48,15 @@
     border: 0;
     border-radius: 5px;
     color: white;
-    font-weight: 500;
-    margin: 0 auto;
+    font-weight: 600;
+    margin: 0 0.5%;
+    overflow: visible;
+    transition: 1s;
+    white-space: nowrap;
+  }
+
+  .cat-btn.selected {
+    background-color: var(--two);
   }
 
   .cat-btn:focus {
@@ -84,7 +93,7 @@
     border-radius: 15px 15px 10px 10px;
   }
 
-  .recipe-card span {
+  .recipe-card span, .ing-card span {
     background-image: linear-gradient(to bottom, transparent, var(--five));
     bottom: 0;
     color: white;
@@ -92,6 +101,7 @@
     font-weight: 600;
     margin-bottom: -2px;
     overflow: hidden;
+    padding: 2em 10px 10px;
     position: absolute;
     text-align: center;
     text-overflow: ellipsis;

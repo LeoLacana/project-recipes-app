@@ -7,7 +7,9 @@ function ExploreFood() {
   return (
     <div>
       <Header canSearch={ false } text="Explorar Comidas" />
-      <ExploreButtons food />
+      <div className="expl-cont">
+        <ExploreButtons food />
+      </div>
       <Footer />
     </div>
   );

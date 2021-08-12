@@ -31,20 +31,26 @@ function DrinksByIngredients() {
 
     <div>
       <Header canSearch={ false } text="Explorar Ingredientes" />
-      {ingredients.slice(0, Number('12')).map(({ strIngredient1 }, index) => (
-        <button
-          onClick={ () => handleCLick(strIngredient1) }
-          key={ index }
-          type="button"
-        >
+      <div className="cards-cont">
+        {ingredients.slice(0, Number('12')).map(({ strIngredient1 }, index) => (
+          <button
+            onClick={ () => handleCLick(strIngredient1) }
+            key={ index }
+            type="button"
+          >
 
-          <div data-testid={ `${index}-ingredient-card` } key={ index }>
-            <img src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` } data-testid={ `${index}-card-img` } alt="" />
-            <p data-testid={ `${index}-card-name` }>{strIngredient1}</p>
-          </div>
+            <div
+              data-testid={ `${index}-ingredient-card` }
+              key={ index }
+              className="ing-card"
+            >
+              <img src={ `https://www.thecocktaildb.com/images/ingredients/${strIngredient1}-Small.png` } data-testid={ `${index}-card-img` } alt="" className="ing-img" />
+              <span data-testid={ `${index}-card-name` }>{strIngredient1}</span>
+            </div>
 
-        </button>
-      ))}
+          </button>
+        ))}
+      </div>
       <Footer />
     </div>
   );

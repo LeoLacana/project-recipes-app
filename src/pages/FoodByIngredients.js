@@ -31,25 +31,28 @@ function FoodByIngredients() {
 
     <div>
       <Header canSearch={ false } text="Explorar Ingredientes" />
-      {ingredients.slice(0, Number('12')).map((ingredient, index) => (
-        <button
-          onClick={ () => handleClick(ingredient.strIngredient) }
-          key={ ingredient.idIngredient }
-          type="button"
-        >
-          <div
-            data-testid={ `${index}-ingredient-card` }
+      <div className="cards-cont">
+        {ingredients.slice(0, Number('12')).map((ingredient, index) => (
+          <button
+            onClick={ () => handleClick(ingredient.strIngredient) }
             key={ ingredient.idIngredient }
+            type="button"
           >
-            <img
-              src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
-              data-testid={ `${index}-card-img` }
-              alt=""
-            />
-            <p data-testid={ `${index}-card-name` }>{ingredient.strIngredient}</p>
-          </div>
-        </button>
-      ))}
+            <div
+              data-testid={ `${index}-ingredient-card` }
+              key={ ingredient.idIngredient }
+              className="ing-card"
+            >
+              <img
+                src={ `https://www.themealdb.com/images/ingredients/${ingredient.strIngredient}-Small.png` }
+                data-testid={ `${index}-card-img` }
+                alt=""
+              />
+              <span data-testid={ `${index}-card-name` }>{ingredient.strIngredient}</span>
+            </div>
+          </button>
+        ))}
+      </div>
       <Footer />
     </div>
   );
