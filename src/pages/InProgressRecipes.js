@@ -53,23 +53,30 @@ function InProgressRecipes({ type }) {
 
   return (
     <div>
-      <div>
-        <img
-          data-testid="recipe-photo"
-          src={ thumb }
-          alt={ recpName }
-          width={ 300 }
-        />
+      <div classeName="container">
+        <div className="row justify-content-md-center">
+          <img
+            className=".img-fluid."
+            data-testid="recipe-photo"
+            src={ thumb }
+            alt={ recpName }
+            width={ 300 }
+          />
+        </div>
       </div>
-      <span data-testid="recipe-title" className="h3">
-        {recpName}
-      </span>
-      <span>
-        <BtnShare endPoint={ pathname.split('/in-progress')[0] } />
-        <BtnFavorite recipe={ infoRecipes } recipeId={ recipeId } type={ type } />
-      </span>
-      <p data-testid="recipe-category">{recpCat}</p>
-      <ul className="list-group">
+      <div className="row justify-content-md-center">
+        <div>
+          <span data-testid="recipe-title" className="h3">
+            {recpName}
+          </span>
+          <span>
+            <BtnShare endPoint={ pathname.split('/in-progress')[0] } />
+            <BtnFavorite recipe={ infoRecipes } recipeId={ recipeId } type={ type } />
+          </span>
+          <div data-testid="recipe-category">{recpCat}</div>
+        </div>
+      </div>
+      <ul className="list-group grid">
         <li className="list-group-item">
           <IngredientAndMeasureInProgress
             recipeId={ recipeId }
@@ -79,9 +86,14 @@ function InProgressRecipes({ type }) {
           />
         </li>
       </ul>
-      <div>
+      <div className="container">
         <h4>Instructions</h4>
-        <div data-testid="instructions">{strInstructions}</div>
+        <div
+          classeName="row justify-content-md-center"
+          data-testid="instructions"
+        >
+          {strInstructions}
+        </div>
       </div>
       <button
         type="button"
