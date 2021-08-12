@@ -54,22 +54,25 @@ function PlaceFood() {
           </option>
         ))}
       </select>
-      {meals.slice(0, Number('12')).map((meal, index) => (
-        <Link
-          to={ `/comidas/${meal.idMeal}` }
-          key={ meal.idMeal }
-        >
-          <div data-testid={ `${index}-recipe-card` }>
-            <p data-testid={ `${index}-card-name` }>{meal.strMeal}</p>
-            <img
-              style={ { width: 80 } }
-              data-testid={ `${index}-card-img` }
-              src={ meal.strMealThumb }
-              alt={ meal.strMeal }
-            />
-          </div>
-        </Link>
-      ))}
+      <div className="cards-cont">
+        {meals.slice(0, Number('12')).map((meal, index) => (
+          <Link
+            to={ `/comidas/${meal.idMeal}` }
+            key={ meal.idMeal }
+          >
+            <div data-testid={ `${index}-recipe-card` } className="recipe-card">
+              <span data-testid={ `${index}-card-name` }>{meal.strMeal}</span>
+              <img
+                className="recipe-img "
+                // style={ { width: 80 } }
+                data-testid={ `${index}-card-img` }
+                src={ meal.strMealThumb }
+                alt={ meal.strMeal }
+              />
+            </div>
+          </Link>
+        ))}
+      </div>
       <Footer />
     </div>
   );

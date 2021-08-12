@@ -1,0 +1,54 @@
+@media screen and ( max-width : 500px ) {
+
+  .expl-cont {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin-top: 10%;
+    min-height: 15em;
+    width: 100%;
+  }
+
+  .expl-cont a {
+    min-width: 70%;
+  }
+
+  .expl-btn {
+    background-color: var(--one);
+    border: 0;
+    border-radius: 3px;
+    color: white;
+    font-weight: 600;
+    min-width: 100%;
+    padding: 1em 2em;
+  }
+
+  .cards-cont > button {
+    border: 0;
+    border-radius: 15px 15px 10px 10px;
+    margin: 0.25em auto;
+    max-height: 200px;
+    min-height: 200px;
+    overflow: hidden;
+    padding: 0;
+    text-align: center;
+    width: 49%;
+  }
+
+  .ing-card {
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    min-height: 200px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .ing-img {
+    max-height: 200px;
+    min-height: 200px;
+    width: 100%;
+  }
+}

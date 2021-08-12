@@ -32,6 +32,7 @@ function ExploreButtons({ food }) {
           <button
             type="button"
             data-testid="explore-by-ingredient"
+            className="expl-btn"
           >
             Por Ingredientes
           </button>
@@ -40,6 +41,7 @@ function ExploreButtons({ food }) {
           <button
             data-testid="explore-by-area"
             type="button"
+            className="expl-btn"
           >
             Por Local de Origem
           </button>
@@ -48,6 +50,7 @@ function ExploreButtons({ food }) {
           <button
             type="button"
             data-testid="explore-surprise"
+            className="expl-btn"
           >
             Me Surpreenda!
           </button>
@@ -62,6 +65,7 @@ function ExploreButtons({ food }) {
           type="button"
           data-testid="explore-by-ingredient"
           id="ingredient"
+          className="expl-btn"
         >
           Por Ingredientes
         </button>
@@ -71,6 +75,7 @@ function ExploreButtons({ food }) {
           type="button"
           data-testid="explore-surprise"
           id="surprise"
+          className="expl-btn"
         >
           Me Surpreenda!
         </button>
