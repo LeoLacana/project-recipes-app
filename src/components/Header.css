@@ -1,0 +1,31 @@
+.header {
+  align-items: center;
+  background-color: #213037;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 5px;
+  width: 100%;
+}
+
+.header img {
+  filter: invert(69%)
+    sepia(86%) saturate(433%) hue-rotate(345deg) brightness(101%) contrast(94%);
+}
+
+.btn-search {
+  background-color: transparent;
+  border: 0;
+}
+
+.btn-search:focus {
+  outline: 0;
+}
+
+@media screen and ( max-width : 500px ) {
+
+  .header {
+    max-height: 50px;
+  }
+}

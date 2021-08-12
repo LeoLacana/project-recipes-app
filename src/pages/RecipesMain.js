@@ -17,7 +17,6 @@ const RecipesMain = ({ type }) => {
     isByIng,
     setAsByIng,
     currIng } = useContext(contextRecipes);
-  // const [recipes, setRecipes] = useState([]);
   const [categories, setCats] = useState([]);
 
   useEffect(() => {
@@ -34,39 +33,38 @@ const RecipesMain = ({ type }) => {
       }
     };
     getRecipes();
-  }, [type, setRecipes]);
-
+    console.log('chamou');
+  }, [type]);
   const renderCards = () => {
     const recipesLimit = 12;
     return recipes.slice(0, recipesLimit).map((r, i) => (
       type === 'comidas'
         ? (
           <Link key={ `${i} - ${r.idMeal}` } to={ `comidas/${r.idMeal}` }>
-            <div data-testid={ `${i}-recipe-card` }>
-              <span data-testid={ `${i}-card-name` }>{r.strMeal}</span>
+            <div data-testid={ `${i}-recipe-card` } className="recipe-card">
               <img
                 src={ r.strMealThumb }
                 alt={ r.strMeal }
                 className="recipe-img"
                 data-testid={ `${i}-card-img` }
               />
+              <span data-testid={ `${i}-card-name` }>{r.strMeal}</span>
             </div>
           </Link>)
         : (
           <Link key={ `${i} - ${r.idDrink}` } to={ `bebidas/${r.idDrink}` }>
-            <div data-testid={ `${i}-recipe-card` }>
-              <span data-testid={ `${i}-card-name` }>{r.strDrink}</span>
+            <div data-testid={ `${i}-recipe-card` } className="recipe-card">
               <img
                 src={ r.strDrinkThumb }
                 alt={ r.strDrink }
                 className="recipe-img"
                 data-testid={ `${i}-card-img` }
               />
+              <span data-testid={ `${i}-card-name` }>{r.strDrink}</span>
             </div>
           </Link>)
     ));
   };
-
   const searchByCategory = async (event, cat) => {
     const { classList } = event.target;
     // if (classList.values.includes("select"))
@@ -86,7 +84,6 @@ const RecipesMain = ({ type }) => {
       classList.remove('selected');
     }
   };
-
   const searchByAll = async () => {
     const btns = document.querySelectorAll('.cat-btn');
     btns.forEach((btn) => {
@@ -95,7 +92,6 @@ const RecipesMain = ({ type }) => {
     const results = await fetchByAll(type);
     setRecipes(results);
   };
-
   return (
     <div>
       <Header
@@ -103,33 +99,35 @@ const RecipesMain = ({ type }) => {
         type={ type }
         text={ type === 'comidas' ? 'Comidas' : 'Bebidas' }
       />
-      <button
-        type="submit"
-        data-testid="All-category-filter"
-        onClick={ searchByAll }
-        className="cat-btn"
-      >
-        All
-      </button>
-      { categories.slice(0, catsLimit).map(({ strCategory }) => (
+      <div className="cat-cont">
         <button
           type="submit"
-          key={ strCategory }
-          data-testid={ `${strCategory}-category-filter` }
-          onClick={ (event) => searchByCategory(event, strCategory) }
+          data-testid="All-category-filter"
+          onClick={ searchByAll }
           className="cat-btn"
         >
-          { strCategory }
+          All
         </button>
-      )) }
-      { recipes.length > 0 ? renderCards() : '' }
+        { categories.slice(0, catsLimit).map(({ strCategory }) => (
+          <button
+            type="submit"
+            key={ strCategory }
+            data-testid={ `${strCategory}-category-filter` }
+            onClick={ (event) => searchByCategory(event, strCategory) }
+            className="cat-btn"
+          >
+            { strCategory }
+          </button>
+        )) }
+      </div>
+      <div className="cards-cont">
+        { recipes.length > 0 ? renderCards() : '' }
+      </div>
       <Footer />
     </div>
   );
 };
-
 RecipesMain.propTypes = {
   type: PropTypes.string.isRequired,
 };
-
 export default RecipesMain;

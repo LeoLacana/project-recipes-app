@@ -16,7 +16,7 @@ export default function SearchBar({ type }) {
 
   const getValueInput = ({ target }) => {
     setValueInputSearchBar(target.value);
-    console.log(type);
+    console.log(target.value);
   };
 
   const showSearchRequestResult = (resultRequest) => {
@@ -64,11 +64,11 @@ export default function SearchBar({ type }) {
         'Sinto muito, não encontramos nenhuma receita para esses filtros.',
       );
     }
-    showSearchRequestResult(resultRequest);
+    await showSearchRequestResult(resultRequest);
   };
 
   return (
-    <form>
+    <form className="search-cont">
       <label htmlFor="inputEmail">
         <input
           type="text"
@@ -78,49 +78,51 @@ export default function SearchBar({ type }) {
           id="inputEmail"
         />
       </label>
-      <div className="form-check">
-        <label className="form-check-label" htmlFor="ingredient-search-radio">
-          <input
-            className="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="ingredient-search-radio"
-            data-testid="ingredient-search-radio"
-            onClick={ () => setValueRadioSearchBar('ingrediente') }
-          />
-          Ingrediente
-        </label>
-      </div>
-      <div className="form-check">
-        <label className="form-check-label" htmlFor="name-search-radio">
-          <input
-            className="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="name-search-radio"
-            data-testid="name-search-radio"
-            onClick={ () => setValueRadioSearchBar('nome') }
-          />
-          Nome
-        </label>
-      </div>
-      <div className="form-check">
-        <label className="form-check-label" htmlFor="first-letter-search-radio">
-          <input
-            className="form-check-input"
-            type="radio"
-            name="flexRadioDefault"
-            id="first-letter-search-radio"
-            data-testid="first-letter-search-radio"
-            onClick={ () => setValueRadioSearchBar('primeira letra') }
-          />
-          Primeira Letra
-        </label>
+      <div className="checks-cont">
+        <div className="form-check">
+          <label className="form-check-label" htmlFor="ingredient-search-radio">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+              id="ingredient-search-radio"
+              data-testid="ingredient-search-radio"
+              onClick={ () => setValueRadioSearchBar('ingrediente') }
+            />
+            Ingrediente
+          </label>
+        </div>
+        <div className="form-check">
+          <label className="form-check-label" htmlFor="name-search-radio">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+              id="name-search-radio"
+              data-testid="name-search-radio"
+              onClick={ () => setValueRadioSearchBar('nome') }
+            />
+            Nome
+          </label>
+        </div>
+        <div className="form-check">
+          <label className="form-check-label" htmlFor="first-letter-search-radio">
+            <input
+              className="form-check-input"
+              type="radio"
+              name="flexRadioDefault"
+              id="first-letter-search-radio"
+              data-testid="first-letter-search-radio"
+              onClick={ () => setValueRadioSearchBar('primeira letra') }
+            />
+            Primeira Letra
+          </label>
+        </div>
       </div>
       <button
         type="button"
         data-testid="exec-search-btn"
-        onClick={ handleSearchBar }
+        onClick={ () => handleSearchBar() }
         id="exerc-search-btn"
         className="btn btn-secondary"
       >

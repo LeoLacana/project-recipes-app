@@ -11,10 +11,10 @@ export const requestIngredient = async (ingrediente, type) => {
 };
 
 export const requestName = async (nome, type) => {
-  const ingredientUrl = type === 'comidas' ? `https://www.themealdb.com/api/json/v1/1/search.php?s=${nome}` : `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${nome}`;
-  const ingredientRequest = await fetch(ingredientUrl);
+  const nameUrl = type === 'comidas' ? `https://www.themealdb.com/api/json/v1/1/search.php?s=${nome}` : `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${nome}`;
+  const nameRequest = await fetch(nameUrl);
   const mealOrDrinks = type === 'comidas' ? 'meals' : 'drinks';
-  return ingredientRequest.json()
+  return nameRequest.json()
     .then((r) => r[`${mealOrDrinks}`])
     .catch(() => {
       const b = [];
@@ -23,10 +23,10 @@ export const requestName = async (nome, type) => {
 };
 
 export const requestLetra = async (primeiraLetra, type) => {
-  const ingredientUrl = type === 'comidas' ? `https://www.themealdb.com/api/json/v1/1/search.php?f=${primeiraLetra}` : `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${primeiraLetra}`;
-  const ingredientRequest = await fetch(ingredientUrl);
+  const primeiraLetraUrl = type === 'comidas' ? `https://www.themealdb.com/api/json/v1/1/search.php?f=${primeiraLetra}` : `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${primeiraLetra}`;
+  const primeiraLetraRequest = await fetch(primeiraLetraUrl);
   const mealOrDrinks = type === 'comidas' ? 'meals' : 'drinks';
-  return ingredientRequest.json()
+  return primeiraLetraRequest.json()
     .then((r) => r[`${mealOrDrinks}`])
     .catch(() => {
       const b = [];
