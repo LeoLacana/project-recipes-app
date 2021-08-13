@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
-// import rockGlass from './images/rockGlass.svg';
 import RecipesMain from './pages/RecipesMain';
 import RecipesDetails from './pages/RecipeDetails';
 import FavoriteRecipes from './pages/FavoriteRecipes';
@@ -13,14 +12,6 @@ import InProgressRecipes from './pages/InProgressRecipes';
 function App() {
   return (
     <div className="meals">
-      {/* <span className="logo">TRYBE</span>
-      <object
-        className="rocksGlass"
-        type="image/svg+xml"
-        data={ rockGlass }
-      >
-        Glass
-      </object> */}
       <Switch>
         <Route exact path="/" component={ Login } />
         <Route

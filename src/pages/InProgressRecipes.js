@@ -53,38 +53,50 @@ function InProgressRecipes({ type }) {
   }
 
   return (
-    <div>
-      <div>
+    <>
+      <div className="container-fluid">
         <img
+          className="img-thumbnail
+          rounded mx-auto d-block col-md-6 float-md-end mb-3 ms-md-3"
           data-testid="recipe-photo"
           src={ thumb }
           alt={ recpName }
           width={ 300 }
         />
+        <div className="container">
+          <span data-testid="recipe-title" className="h3 ">
+            {recpName}
+          </span>
+          <div data-testid="recipe-category">{recpCat}</div>
+        </div>
+        <div className="btn-container container">
+          <BtnShare endPoint={ pathname.split('/in-progress')[0] } />
+          <BtnFavorite recipe={ infoRecipes } recipeId={ recipeId } type={ type } />
+        </div>
       </div>
-      <span data-testid="recipe-title" className="h3">
-        {recpName}
-      </span>
-      <span>
-        <BtnShare endPoint={ pathname.split('/in-progress')[0] } />
-        <BtnFavorite recipe={ infoRecipes } recipeId={ recipeId } type={ type } />
-      </span>
-      <p data-testid="recipe-category">{recpCat}</p>
-      <ul className="list-group">
-        <li className="list-group-item">
-          <IngredientAndMeasureInProgress
-            recipeId={ recipeId }
-            type={ type }
-            ingredientAndMeasure={ ingredientAndMeasure }
-            changeButton={ changeButton }
-          />
-        </li>
-      </ul>
-      <div>
+      <div className="container">
+        <ul className="list-group grid">
+          <li className="list-group-item">
+            <IngredientAndMeasureInProgress
+              recipeId={ recipeId }
+              type={ type }
+              ingredientAndMeasure={ ingredientAndMeasure }
+              changeButton={ changeButton }
+            />
+          </li>
+        </ul>
+      </div>
+      <div className="container instruction">
         <h4>Instructions</h4>
-        <div data-testid="instructions">{strInstructions}</div>
+        <div
+          classename="col-md-4 ms-auto"
+          data-testid="instructions"
+        >
+          {strInstructions}
+        </div>
       </div>
       <button
+        className="btn-end-recp"
         type="button"
         data-testid="finish-recipe-btn"
         onClick={ recipeDone }
@@ -92,7 +104,7 @@ function InProgressRecipes({ type }) {
       >
         Finalizar Receita
       </button>
-    </div>
+    </>
   );
 }
 

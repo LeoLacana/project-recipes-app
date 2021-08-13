@@ -40,49 +40,53 @@ class Incial extends Component {
   render() {
     const { button } = this.state;
     return (
-
-      <form>
-        <div className="col-lg-10">
-          <label htmlFor="inputEmail">
-            Email
-            <input
-              onChange={ this.handleInput }
-              data-testid="email-input"
-              type="email"
-              className="form-control"
-              id="inputEmail"
-              name="email"
-            />
-          </label>
-        </div>
-        <div className="col-lg-12">
-          <label htmlFor="inputPassword">
-            Senha
-            <input
-              onChange={ this.handleInput }
-              data-testid="password-input"
-              type="Password"
-              className="form-control"
-              id="inputPassword"
-              name="senha"
-            />
-          </label>
-        </div>
-        <div className="col-auto">
-          <Link
-            to="/comidas"
-          >
-            <button
-              disabled={ button }
-              data-testid="login-submit-btn"
-              type="submit"
-              className="btn btn-primary"
+      <div className="container p">
+        <h1>App Recipe</h1>
+        <form className="align-text-top grid">
+          <div className="col-lg-12">
+            <label
+              htmlFor="inputEmail"
             >
-              Enviar
-            </button>
-          </Link>
-        </div>
-      </form>
+              Email
+              <input
+                onChange={ this.handleInput }
+                data-testid="email-input"
+                type="email"
+                className="form-control form-control-lg"
+                id="inputEmail"
+                name="email"
+              />
+            </label>
+          </div>
+          <div className="col-lg-12">
+            <label htmlFor="inputPassword">
+              Senha
+              <input
+                onChange={ this.handleInput }
+                data-testid="password-input"
+                type="Password"
+                className="form-control form-control-lg"
+                id="inputPassword"
+                name="senha"
+              />
+            </label>
+          </div>
+          <div className="col-auto">
+            <Link
+              to="/comidas"
+            >
+              <button
+                disabled={ button }
+                data-testid="login-submit-btn"
+                type="submit"
+                className="btn btn-primary"
+              >
+                Enviar
+              </button>
+            </Link>
+          </div>
+        </form>
+      </div>
     );
   }
 }
