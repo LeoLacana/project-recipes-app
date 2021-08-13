@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import './FavoriteAndMadeRecipes.css';
 import Header from '../components/Header';
 import BtnShare from '../components/BtnShare';
-import './RecipesMade.css';
 
 export default function RecipesMade() {
   const [recipesFiltered, setRecipesFiltered] = useState();
@@ -54,77 +54,80 @@ export default function RecipesMade() {
   return (
     <div>
       <Header canSearch={ false } text="Receitas Feitas" />
-      <button
-        type="button"
-        data-testid="filter-by-all-btn"
-        id="filter-by-all-btn"
-        className="btn btn-secondary"
-        onClick={ () => filterCompletedRecipes('all') }
-      >
-        All
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-food-btn"
-        id="filter-by-food-btn"
-        className="btn btn-secondary"
-        onClick={ () => filterCompletedRecipes('food') }
-      >
-        Food
-      </button>
-      <button
-        type="button"
-        data-testid="filter-by-drink-btn"
-        id="filter-by-drink-btn"
-        className="btn btn-secondary"
-        onClick={ () => filterCompletedRecipes('drink') }
-      >
-        Drinks
-      </button>
+      <div className="filt-made">
+        <button
+          type="button"
+          data-testid="filter-by-all-btn"
+          id="filter-by-all-btn"
+          onClick={ () => filterCompletedRecipes('all') }
+        >
+          All
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-food-btn"
+          id="filter-by-food-btn"
+          onClick={ () => filterCompletedRecipes('food') }
+        >
+          Food
+        </button>
+        <button
+          type="button"
+          data-testid="filter-by-drink-btn"
+          id="filter-by-drink-btn"
+          onClick={ () => filterCompletedRecipes('drink') }
+        >
+          Drinks
+        </button>
+      </div>
       { !recipesFiltered ? '' : (recipesFiltered.map((recipe, index) => (
-        <div key={ recipe.id } className="cart-recipe-done">
-          <Link to={ `/${recipe.type}s/${recipe.id}` }>
-            <img
-              alt={ recipe.name }
-              src={ recipe.image }
-              data-testid={ `${index}-horizontal-image` }
-              className="image-recipe-made"
-            />
-
-            <h1
-              data-testid={ `${index}-horizontal-name` }
-            >
-              { recipe.name }
-            </h1>
-          </Link>
-          <h3
-            className="horizontal-top-text"
-            data-testid={ `${index}-horizontal-top-text` }
-          >
-            <p>
-              { recipe.alcoholicOrNot }
-            </p>
-            { `${recipe.area} - ${recipe.category}` }
-          </h3>
-          <h3
-            data-testid={ `${index}-horizontal-done-date` }
-          >
-            { recipe.doneDate }
-          </h3>
-          <div>
-            { vamola(recipe.tags) }
-            { a.map((r) => r.map((x, i) => (
-              <div
-                key={ `${index} - ${i}` }
-                data-testid={ `${index}-${x}-horizontal-tag` }
-              >
-                { x }
+        <div key={ recipe.id } className="made-cont">
+          <div className="made-info">
+            <Link to={ `/${recipe.type}s/${recipe.id}` }>
+              <div className="made-card">
+                <img
+                  alt={ recipe.name }
+                  src={ recipe.image }
+                  data-testid={ `${index}-horizontal-image` }
+                  className="made-img"
+                />
+                <span data-testid={ `${index}-horizontal-name` }>
+                  { recipe.name }
+                </span>
               </div>
-            ))) }
+            </Link>
+            <div className="side-info">
+              <h5
+                className="horizontal-top-text"
+                data-testid={ `${index}-horizontal-top-text` }
+              >
+                <p>
+                  { recipe.alcoholicOrNot }
+                </p>
+                { `${recipe.area} - ${recipe.category}` }
+              </h5>
+              <h5
+                data-testid={ `${index}-horizontal-done-date` }
+              >
+                { recipe.doneDate }
+              </h5>
+              <div>
+                { vamola(recipe.tags) }
+                { a.map((r) => r.map((x, i) => (
+                  <div
+                    key={ `${index} - ${i}` }
+                    data-testid={ `${index}-${x}-horizontal-tag` }
+                  >
+                    { x }
+                  </div>
+                ))) }
+              </div>
+            </div>
           </div>
-          <div>
+          <div className="btn-container">
             <BtnShare endPoint={ `/${recipe.type}s/${recipe.id}` } listIndex={ index } />
           </div>
+          <hr />
         </div>
       ))) }
     </div>
