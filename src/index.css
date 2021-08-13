@@ -12,10 +12,6 @@ code {
     monospace;
 }
 
-html {
-  height: 100%;
-}
-
 .g-start-2 {
   grid-row: 2
 }

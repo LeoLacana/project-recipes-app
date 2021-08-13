@@ -1,0 +1,89 @@
+.fav-pic, .made-img {
+  width: 7em;
+}
+
+@media screen and ( max-width : 500px ) {
+
+  .filt-fav, .filt-made {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin: 0.3em 0 0.6em;
+    width: 100%;
+  }
+
+  .filt-fav button, .filt-made button {
+    background-color: var(--one);
+    border: 0;
+    border-radius: 5px 5px 3px 3px;
+    color: white;
+    padding: 0.5em 0;
+    width: 30%;
+  }
+
+  .fav-info a, .made-info a {
+    margin: 0 0 0 auto;
+    text-align: center;
+    width: 49%;
+  }
+
+  .fav-cont, .made-cont {
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0 0.5em;
+    width: 100%;
+  }
+
+  .fav-cont .btn-container, .made-cont .btn-container {
+    margin: 3% auto;
+  }
+
+  .fav-cont hr, .made-cont hr {
+    background-color: gainsboro;
+    color: gainsboro;
+    height: 1px;
+    margin: 0.5em auto 0.1em;
+    width: 95%;
+  }
+
+  .fav-info, .made-info {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+  }
+
+  .side-info {
+    background-color: var(--five);
+    border-radius: 0 15px 10px 0;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 0 0;
+    max-height: 200px;
+    min-height: 200px;
+    overflow: scroll;
+    padding: 0.7em 0.1em;
+    text-align: center;
+    width: 49%;
+  }
+
+
+  .fav-card, .made-card {
+    border-radius: 15px 0 0 10px;
+    display: flex;
+    flex-direction: column;
+    max-height: 200px;
+    min-height: 200px;
+    object-fit: cover;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .fav-pic, .made-img {
+    max-height: 200px;
+    min-height: 200px;
+    object-fit: cover;
+    width: 100%;
+  }
+}

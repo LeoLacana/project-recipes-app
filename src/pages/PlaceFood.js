@@ -34,26 +34,29 @@ function PlaceFood() {
   return (
     <div>
       <Header canSearch text="Explorar Origem" type="comidas" />
-      <select
-        data-testid="explore-by-area-dropdown"
-        onChange={ mealsByArea }
-      >
-        <option
-          value="All"
-          data-testid="All-option"
+      <div className="slct-cont">
+        <select
+          data-testid="explore-by-area-dropdown"
+          onChange={ mealsByArea }
+          className="slct-orgn"
         >
-          All
-        </option>
-        {options.map((option, index) => (
           <option
-            data-testid={ `${option.strArea}-option` }
-            value={ option.strArea }
-            key={ index }
+            value="All"
+            data-testid="All-option"
           >
-            {option.strArea}
+            All
           </option>
-        ))}
-      </select>
+          {options.map((option, index) => (
+            <option
+              data-testid={ `${option.strArea}-option` }
+              value={ option.strArea }
+              key={ index }
+            >
+              {option.strArea}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="cards-cont">
         {meals.slice(0, Number('12')).map((meal, index) => (
           <Link

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import './FavoriteRecipes.css';
+import './FavoriteAndMadeRecipes.css';
 import Header from '../components/Header';
 import BtnShare from '../components/BtnShare';
 import BtnFavorite from '../components/BtnFavorite';
@@ -58,52 +58,63 @@ const FavoriteRecipes = () => {
         ? `${r.area} - ${r.category}` : r.alcoholicOrNot;
       const endP = r.type === 'comida' ? `/comidas/${r.id}` : `/bebidas/${r.id}`;
       return (
-        <div key={ r.name }>
-          <Link to={ endP }>
-            <img
-              src={ r.image }
-              alt={ r.name }
-              className="fav-pic"
-              data-testid={ `${i}-horizontal-image` }
+        <div key={ r.name } className="fav-cont">
+          <div className="fav-info">
+            <Link to={ endP }>
+              <div className="fav-card">
+                <img
+                  src={ r.image }
+                  alt={ r.name }
+                  className="fav-pic"
+                  data-testid={ `${i}-horizontal-image` }
+                />
+                <span data-testid={ `${i}-horizontal-name` }>{ r.name }</span>
+              </div>
+            </Link>
+            <div className="side-info">
+              <h5 data-testid={ `${i}-horizontal-top-text` }>{ adtionalInfo }</h5>
+            </div>
+          </div>
+          <div className="btn-container">
+            <BtnShare endPoint={ endP } listIndex={ i } />
+            <BtnFavorite
+              recipe={ recpObj }
+              type={ `${r.type}s` }
+              recipeId={ r.id }
+              listIndex={ i }
+              setFavs={ setFavs }
             />
-            <h4 data-testid={ `${i}-horizontal-name` }>{ r.name }</h4>
-          </Link>
-          <h5 data-testid={ `${i}-horizontal-top-text` }>{ adtionalInfo }</h5>
-          <BtnFavorite
-            recipe={ recpObj }
-            type={ `${r.type}s` }
-            recipeId={ r.id }
-            listIndex={ i }
-            setFavs={ setFavs }
-          />
-          <BtnShare endPoint={ endP } listIndex={ i } />
+          </div>
+          <hr />
         </div>);
     })
   );
   return (
     <div>
       <Header canSearch={ false } text="Receitas Favoritas" />
-      <button
-        type="submit"
-        onClick={ () => filterBy('all') }
-        data-testid="filter-by-all-btn"
-      >
-        All
-      </button>
-      <button
-        type="submit"
-        onClick={ () => filterBy('food') }
-        data-testid="filter-by-food-btn"
-      >
-        Food
-      </button>
-      <button
-        type="submit"
-        onClick={ () => filterBy('drink') }
-        data-testid="filter-by-drink-btn"
-      >
-        Drinks
-      </button>
+      <div className="filt-fav">
+        <button
+          type="submit"
+          onClick={ () => filterBy('all') }
+          data-testid="filter-by-all-btn"
+        >
+          All
+        </button>
+        <button
+          type="submit"
+          onClick={ () => filterBy('food') }
+          data-testid="filter-by-food-btn"
+        >
+          Food
+        </button>
+        <button
+          type="submit"
+          onClick={ () => filterBy('drink') }
+          data-testid="filter-by-drink-btn"
+        >
+          Drinks
+        </button>
+      </div>
       {renderFavCards()}
     </div>
   );

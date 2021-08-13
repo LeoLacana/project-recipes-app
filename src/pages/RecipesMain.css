@@ -93,7 +93,7 @@
     border-radius: 15px 15px 10px 10px;
   }
 
-  .recipe-card span, .ing-card span {
+  .recipe-card span, .ing-card span, .fav-card span, .made-card span {
     background-image: linear-gradient(to bottom, transparent, var(--five));
     bottom: 0;
     color: white;
