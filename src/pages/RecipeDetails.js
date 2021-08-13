@@ -80,10 +80,12 @@ const RecipeDetails = ({ type, match }) => {
         />
         <h2 data-testid="recipe-title">{ recpName }</h2>
         <h4 data-testid="recipe-category">{ recpCat }</h4>
+        <hr />
         <div className="btn-container">
           <BtnShare />
           <BtnFavorite recipe={ recipe } type={ type } recipeId={ recipeId } />
         </div>
+        <hr />
         <ul>
           {ings.map(({ ing, meas }, i) => (
             <li key={ i } data-testid={ `${i}-ingredient-name-and-measure` }>
@@ -91,7 +93,9 @@ const RecipeDetails = ({ type, match }) => {
             </li>
           ))}
         </ul>
+        <hr />
         <p data-testid="instructions">{ recipe.strInstructions }</p>
+        <hr />
         { type === 'comidas'
           ? (
             <object

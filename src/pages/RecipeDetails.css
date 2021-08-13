@@ -60,6 +60,7 @@
   .dtl-img {
     border-radius: 50%;
     margin: 1% 27.5%;
+    object-fit: cover;
     width: 45%;
   }
 
@@ -76,6 +77,23 @@
     margin: 1% auto 0;
     padding: 2%;
     width: 97.5%;
+  }
+
+  .recipe-info ul {
+    margin-top: 5%;
+  }
+
+  .recipe-info h2, .recipe-info h4 {
+    margin-left: 5%;
+    text-align: left;
+  }
+
+  .recipe-info hr {
+    background-color: gainsboro;
+    color: gainsboro;
+    height: 1px;
+    margin: 0.3em auto 0.2em;
+    width: 90%;
   }
 
   .btn-container {
@@ -113,14 +131,14 @@
   }
 
   .meal-video {
-    margin: 0 5%;
+    border-radius: 3px;
+    margin: 0.4em 5% 0;
     width: 90%;
   }
 
-  .btn-start-recp {
+  .btn-start-recp, .btn-end-recp {
     background-color: var(--five);
-    border: 0;
-    border-radius: 10px 10px 0 0;
+    border-radius: 5px 5px 0 0;
     bottom: 0;
     color: white;
     font-size: 1.1em;
@@ -129,4 +147,9 @@
     position: fixed;
     width: 100%;
   }
+
+  .btn-start-recp:focus, .btn-end-recp:focus {
+    outline: none;
+  }
+
 }

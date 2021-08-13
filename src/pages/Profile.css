@@ -1,0 +1,15 @@
+.email-cont {
+  background-color: var(--five);
+  border-radius: 3px;
+  color: white;
+  font-size: 1.05em;
+  font-weight: 600;
+  margin: 1em auto;
+  padding: 0.1em 0;
+  text-align: center;
+  width: 90%;
+}
+
+.email-cont p {
+  padding: 15px 0 0;
+}

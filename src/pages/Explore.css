@@ -1,6 +1,6 @@
 @media screen and ( max-width : 500px ) {
 
-  .expl-cont {
+  .expl-cont, .prof-cont {
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -10,11 +10,11 @@
     width: 100%;
   }
 
-  .expl-cont a {
+  .expl-cont a, .prof-cont a {
     min-width: 70%;
   }
 
-  .expl-btn {
+  .expl-btn, .prof-btn {
     background-color: var(--one);
     border: 0;
     border-radius: 3px;
@@ -51,4 +51,27 @@
     min-height: 200px;
     width: 100%;
   }
+
+  .slct-cont {
+    margin: 0.3em auto;
+    width: 90%;
+  }
+
+  .slct-orgn {
+    background-color: white;
+    border: 0.15em solid gainsboro;
+    border-radius: 3px;
+    font-weight: 600;
+    padding: 0.5em;
+    width: 100%;
+  }
+
+  .slct-orgn option {
+    font-weight: 600;
+  }
+
+  .slct-orgn:focus {
+    outline: none;
+  }
+
 }

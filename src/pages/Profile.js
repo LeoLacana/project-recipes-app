@@ -1,4 +1,5 @@
 import React from 'react';
+import './Profile.css';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -10,33 +11,39 @@ function Profile() {
 
       <div>
         <Header canSearch={ false } text="Perfil" />
-        <p data-testid="profile-email">{ user !== null ? user.email : 'email' }</p>
-        <Link to="/receitas-feitas">
-          <button
-            type="button"
-            data-testid="profile-done-btn"
-          >
-            Receitas Feitas
-          </button>
-        </Link>
-        <Link to="/receitas-favoritas">
-          <button
-            type="button"
-            data-testid="profile-favorite-btn"
-          >
-            Receitas Favoritas
-          </button>
-        </Link>
-        <Link to="/">
-          <button
-            onClick={ () => localStorage.clear() }
-            type="button"
-            data-testid="profile-logout-btn"
-          >
-            Sair
-          </button>
-        </Link>
-
+        <div className="email-cont">
+          <p data-testid="profile-email">{ user !== null ? user.email : 'email' }</p>
+        </div>
+        <div className="prof-cont">
+          <Link to="/receitas-feitas">
+            <button
+              type="button"
+              data-testid="profile-done-btn"
+              className="prof-btn"
+            >
+              Receitas Feitas
+            </button>
+          </Link>
+          <Link to="/receitas-favoritas">
+            <button
+              type="button"
+              data-testid="profile-favorite-btn"
+              className="prof-btn"
+            >
+              Receitas Favoritas
+            </button>
+          </Link>
+          <Link to="/">
+            <button
+              onClick={ () => localStorage.clear() }
+              type="button"
+              data-testid="profile-logout-btn"
+              className="prof-btn"
+            >
+              Sair
+            </button>
+          </Link>
+        </div>
       </div>
 
       <Footer />
