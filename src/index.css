@@ -11,3 +11,50 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+html {
+  height: 100%;
+}
+
+.g-start-2 {
+  grid-row: 2
+}
+
+
+.p {
+  align-items: center;
+  background-image: radial-gradient(circle at center center, var(--three),var(--five));;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid var(--one);
+  border-radius: 10px;
+  padding: 20px;
+  width: 100vw;
+  color: var(--one);
+  font-size: x-large;
+  font-stretch: condensed;
+}
+.p input {
+  background-color:#f5ae6874;
+  border: solid var(--one);
+  box-shadow: var(--two) 0.1em 0.1em 0.2em ;
+}
+
+.p .col-auto button {
+  background-color: var(--one);
+  border: solid var(--two);
+  color: var(--five);
+  width: 100%;
+  text-shadow: rgb(243, 239, 239) 0.1em 0.1em 0.2em
+}
+
+.p label {
+  text-shadow: black 0.1em 0.1em 0.2em
+}
+
+.p h1 {
+  margin-bottom: 60px;
+  text-shadow: black 0.1em 0.1em 0.2em
+}

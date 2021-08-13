@@ -95,22 +95,23 @@ function IngredientAndMeasureInProgress({
       const checkClasseP = state.includes(index) ? 'o' : '';
       const checkInput = state.includes(index) ? 'checked' : '';
       return (
-        <p
-          data-testid={ `${index}-ingredient-step` }
-          index={ index }
-          className={ checkClasseP }
-          key={ index }
-        >
-          <input
-            className="form-check-input me-1"
-            type="checkbox"
-            value=""
-            onClick={ (e) => addClass(e, index) }
-            aria-label="..."
-            defaultChecked={ checkInput }
-          />
-          {`${ing} - ${mea}`}
-        </p>
+        <div key={ index } className="row justify-content-center">
+          <li
+            data-testid={ `${index}-ingredient-step` }
+            index={ index }
+            className={ checkClasseP }
+          >
+            <input
+              className="form-check-input me-1"
+              type="checkbox"
+              value=""
+              onClick={ (e) => addClass(e, index) }
+              aria-label="..."
+              defaultChecked={ checkInput }
+            />
+            {`${ing} - ${mea}`}
+          </li>
+        </div>
       );
     })
   );
