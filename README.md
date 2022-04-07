@@ -1,3 +1,8 @@
+# Como Executar o Projeto
+  - Clone o repositório com ( git clone git@github.com:LeoLacana/project-recipes-app.git )
+  - Instale as dependências com ( npm install )
+  - Para rodar ( npm start )
+
 # Habilidades Utilizadas
 
   - Context API do React para gerenciar estado
